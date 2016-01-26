@@ -38,4 +38,15 @@ void Scaling::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+void Scaling::ExtendArm(int speed){
+	scaleLift->Set(speed);
+}
 
+int Scaling::ArmExtended()
+{
+	return scaleEnc->Get();
+}
+
+bool Scaling::ArmFullyRetraced(){
+	return scaleLimit->Get();
+}
