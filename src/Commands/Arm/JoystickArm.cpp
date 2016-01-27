@@ -30,7 +30,7 @@ void JoystickArm::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void JoystickArm::Execute() {
-
+	Robot::arm->SetArmSpeed(Robot::oi->GetYControl());
 }
 
 // Make this return true when this Command no longer needs to run execute()

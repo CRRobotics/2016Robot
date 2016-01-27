@@ -50,16 +50,16 @@ void Drive::Shift(bool high) {
 }
 
 void Drive::TankDrive(double lSpeed, double rSpeed) {
-	lDrive1->Set(lSpeed);
+	lDrive1->Set(lSpeed);//TODO: Zak said he would change these
 	lDrive2->Set(lSpeed);
 	rDrive1->Set(rSpeed);
 	rDrive2->Set(rSpeed);
 }
 
-int Drive::LeftEncoderMoved(){
+int Drive::GetLeftEnc(){
 	return lEnc->Get();
 }
 
-int Drive::RightEncoderMoved(){
+int Drive::GetRightEnc(){
 	return rEnc->Get();
 }

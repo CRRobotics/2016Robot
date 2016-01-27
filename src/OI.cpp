@@ -71,3 +71,7 @@ double OI::GetYLeft(){
 double OI::GetYRight(){
 	return rJoystick->GetY();
 }
+
+double OI::GetYControl(){
+	return cJoystick->GetY();
+}

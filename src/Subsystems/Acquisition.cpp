@@ -38,10 +38,10 @@ void Acquisition::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void Acquisition::Roller(double speed){
+void Acquisition::SetRollSpeed(double speed){
 	acqRoller->Set(speed);
 }
 
-bool Acquisition::BallInside(){
+bool Acquisition::IsBallAcquired(){
 	return acqSensor1->Get() || acqSensor2->Get();
 }

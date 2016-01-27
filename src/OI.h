@@ -35,6 +35,7 @@ public:
 
 	double GetYLeft();
 	double GetYRight();
+	double GetYControl();
 };
 
 #endif

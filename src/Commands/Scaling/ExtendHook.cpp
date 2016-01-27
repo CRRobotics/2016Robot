@@ -30,21 +30,21 @@ void ExtendHook::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ExtendHook::Execute() {
-
+	Robot::scaling->ExtendArmToPoint(2.0);//TODO: Replace 2.0 with constant for fully extended
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ExtendHook::IsFinished() {
-    return false;
+    return Robot::scaling->IsArmExtendedToPoint(2.0);//TODO: Replace 2.0 with the constant for fully extended
 }
 
 // Called once after isFinished returns true
 void ExtendHook::End() {
-
+	Robot::scaling->SetExtendSpeed(0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ExtendHook::Interrupted() {
-
+	Robot::scaling->SetExtendSpeed(0);
 }

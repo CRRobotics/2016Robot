@@ -30,21 +30,21 @@ void AcquireBall::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AcquireBall::Execute() {
-
+	Robot::acquisition->SetRollSpeed(1.0);//TODO: Maybe change 1.0 to something better and negate
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool AcquireBall::IsFinished() {
-    return false;
+    return Robot::acquisition->IsBallAcquired();
 }
 
 // Called once after isFinished returns true
 void AcquireBall::End() {
-
+	Robot::acquisition->SetRollSpeed(0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void AcquireBall::Interrupted() {
-
+	Robot::acquisition->SetRollSpeed(0);
 }

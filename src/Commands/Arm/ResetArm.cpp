@@ -30,21 +30,21 @@ void ResetArm::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ResetArm::Execute() {
-
+	Robot::arm->SetArmSpeed(-.5);//TODO: Change -1.0 to a PID value or something more meaningful
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ResetArm::IsFinished() {
-    return false;
+    return Robot::arm->IsArmBotLimit();
 }
 
 // Called once after isFinished returns true
 void ResetArm::End() {
-
+	Robot::arm->SetArmSpeed(0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ResetArm::Interrupted() {
-
+	Robot::arm->SetArmSpeed(0);
 }
