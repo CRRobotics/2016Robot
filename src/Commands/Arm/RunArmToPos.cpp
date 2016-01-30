@@ -30,7 +30,14 @@ void RunArmToPos::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void RunArmToPos::Execute() {
-	Robot::arm->ArmDriveToSetPoint();
+	if (Robot::oi->GetMan())
+	{
+		Robot::arm->ArmDriveToPoint(Robot::oi->GetDial());
+	}
+	else
+	{
+		Robot::arm->ArmDriveToSetPoint();
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()

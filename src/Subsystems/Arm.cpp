@@ -44,6 +44,7 @@ void Arm::InitDefaultCommand() {
 
 void Arm::SetArmSpeed(double speed)
 {
+	armLift->SetControlMode(CANSpeedController::kSpeed);
 	armLift->Set(speed);
 }
 
@@ -64,11 +65,13 @@ void Arm::SetArmSetPoint(double point){
 }
 
 void Arm::ArmDriveToPoint(double point){
-	//TODO: Implement this
+	armLift->SetControlMode(CANSpeedController::kPosition);
+	armLift->Set(point);
 }
 
 void Arm::ArmDriveToSetPoint(){
-	//TODO: Implement this
+	armLift->SetControlMode(CANSpeedController::kPosition);
+	armLift->Set(m_setPoint);
 }
 
 bool Arm::IsArmAtPoint(double point){

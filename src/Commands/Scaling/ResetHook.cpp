@@ -35,12 +35,13 @@ void ResetHook::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ResetHook::IsFinished() {
-    return Robot::scaling->IsArmHome();
+    return Robot::scaling->IsHome();
 }
 
 // Called once after isFinished returns true
 void ResetHook::End() {
 	Robot::scaling->SetExtendSpeed(0);
+	Robot::scaling->ResetScaling();
 }
 
 // Called when another command which requires one or more of the same
