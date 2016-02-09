@@ -43,7 +43,7 @@ void AutoDriveTurn::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutoDriveTurn::IsFinished() {
-	return (fabs(Robot::drive->GetLeftEnc() - m_startTicksRight) > fabs(m_ticks) && fabs(Robot::drive->GetRightEnc() - m_startTicksLeft) > fabs(m_ticks));
+	return (fabs(Robot::drive->GetLeftEnc() - m_startTicksLeft) > fabs(m_ticks) && fabs(Robot::drive->GetRightEnc() - m_startTicksRight) > fabs(m_ticks));
 }
 
 // Called once after isFinished returns true

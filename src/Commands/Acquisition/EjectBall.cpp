@@ -30,7 +30,7 @@ void EjectBall::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void EjectBall::Execute() {
-	Robot::acquisition->SetRollSpeed(-1.0);//TODO: Maybe negate
+	Robot::acquisition->SetRollSpeed(1);//TODO: Maybe negate
 }
 
 // Make this return true when this Command no longer needs to run execute()

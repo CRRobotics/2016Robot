@@ -150,4 +150,5 @@
 			<resource resourceType="PROJECT" workspacePath="/CodeRedRobot2016"/>
 		</configuration>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

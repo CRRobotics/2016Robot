@@ -30,12 +30,12 @@ void ExtendHook::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ExtendHook::Execute() {
-	Robot::scaling->ExtendToPoint(2.0);//TODO: Replace 2.0 with constant for fully extended
+	Robot::scaling->ExtendToPoint(Scaling::Position::POS_EXTENDED);//TODO: Replace 2.0 with constant for fully extended
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ExtendHook::IsFinished() {
-    return Robot::scaling->IsExtendedToPoint(2.0);//TODO: Replace 2.0 with the constant for fully extended
+    return Robot::scaling->IsExtendedToPoint(Scaling::Position::POS_EXTENDED);//TODO: Replace 2.0 with the constant for fully extended
 }
 
 // Called once after isFinished returns true

@@ -39,12 +39,16 @@ void Scaling::InitDefaultCommand() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void Scaling::SetExtendSpeed(int speed){
-	scaleLift->SetControlMode(CANSpeedController::ControlMode::kSpeed);
+	ChangeControlMode(CANTalon::ControlMode::kPercentVbus);
 	scaleLift->Set(speed);
 }
 
+void Scaling::ExtendToPoint(Position point){
+	ExtendToPoint(GetEncValueForPos(point));
+}
+
 void Scaling::ExtendToPoint(double point){
-	scaleLift->SetControlMode(CANSpeedController::ControlMode::kPosition);
+	ChangeControlMode(CANSpeedController::ControlMode::kPosition);
 	scaleLift->Set(point);
 }
 
@@ -56,10 +60,35 @@ bool Scaling::IsHome(){
 	return scaleLimit->Get();
 }
 
-bool Scaling::IsExtendedToPoint(double point){
-	return fabs(scaleLift->GetEncPosition() - point) < 0.2;
+bool Scaling::IsExtendedToPoint(Position point){
+	return fabs(scaleLift->GetEncPosition() - GetEncValueForPos(point)) < 0.2;
 }
 
 void Scaling::ResetScaling(){
 	scaleLift->SetPosition(0);
+}
+
+double Scaling::GetEncValueForPos(Position pos){
+	switch (pos)//Update values
+	{
+		case Position::POS_EXTENDED:
+			return 3;
+		break;
+		case Position::POS_RETRACTED:
+			return 2;
+		break;
+		case Position::POS_HOME:
+			return 1;
+		break;
+		default:
+			return -1;
+	}
+}
+
+void Scaling::ChangeControlMode(CANTalon::ControlMode mode){
+	scaleLift->SetControlMode(mode);
+	if (mode == CANTalon::ControlMode::kPosition){
+		scaleLift->SetPIDSourceType(PIDSourceType::kDisplacement);
+		((std::shared_ptr<CANSpeedController>)scaleLift)->SetPID(1,0,0);
+	}
 }

@@ -30,12 +30,12 @@ void RetractHook::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void RetractHook::Execute() {
-	Robot::scaling->ExtendToPoint(1.0);//TODO: Replace 1.0 with constant for scaling
+	Robot::scaling->ExtendToPoint(Scaling::Position::POS_RETRACTED);//TODO: Replace 1.0 with constant for scaling
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool RetractHook::IsFinished() {
-    return Robot::scaling->IsExtendedToPoint(1.0);//TODO: Replace 1.0 with constant for scaling
+    return Robot::scaling->IsExtendedToPoint(Scaling::Position::POS_RETRACTED);//TODO: Replace 1.0 with constant for scaling
 }
 
 // Called once after isFinished returns true
