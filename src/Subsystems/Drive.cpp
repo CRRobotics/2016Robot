@@ -76,3 +76,11 @@ float Drive::GetXAccel(){
 float Drive::GetYAccel(){
 	return ahrs->GetWorldLinearAccelY();
 }
+
+float Drive::GetXDisplacement(){
+	return ahrs->GetDisplacementX();
+}
+
+float Drive::GetYDisplacement(){
+	return ahrs->GetDisplacementY();
+}

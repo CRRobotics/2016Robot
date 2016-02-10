@@ -29,6 +29,17 @@
 
 class Robot : public IterativeRobot {
 public:
+
+	enum class Defense
+	{
+		PORT,	CHEVAL,
+		MOAT,	RAMP,
+		DRAW,	SALLY,
+		WALL,	ROUGH,
+		LOW
+
+	};
+
 	std::unique_ptr<Command> autonomousCommand;
 	static std::unique_ptr<OI> oi;
 	LiveWindow *lw = LiveWindow::GetInstance();

@@ -30,7 +30,7 @@ AutoDriveForward::AutoDriveForward(double speed, double inches): Command() {
 void AutoDriveForward::Initialize() {
 	m_startTicksLeft = Robot::drive->GetLeftEnc();
 	m_startTicksRight = Robot::drive->GetRightEnc();
-	if (m_ticks < 0)
+	if (m_ticks < 0 && m_speed > 0)
 	{
 		m_speed = m_speed * -1;
 	}
