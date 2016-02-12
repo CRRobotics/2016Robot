@@ -9,8 +9,8 @@
 // it from being updated in the future.
 
 
-#ifndef AUTODRIVE_H
-#define AUTODRIVE_H
+#ifndef AUTODRIVEFORWARD_H
+#define AUTODRIVEFORWARD_H
 #define TICKS_PER_INCH 220
 
 #include "Commands/Subsystem.h"

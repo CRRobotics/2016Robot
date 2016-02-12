@@ -2,13 +2,21 @@
 #include "DriveToTarget.h"
 
 #include "../Drive/AutoDriveForward.h"
-#include "../Arm/ArmSetPos.h"
+#include "../Drive/AutoDriveTurn.h"
+#include "../Arm/ArmDriveToPos.h"
 
-DriveToTarget::DriveToTarget(int defensePos): CommandGroup(){
-	int currentAngle = Robot::drive->GetYaw() % 360;
-	double robotDistFromBounds = BOUNDS_IN_TO_DEFENSES + IN_PER_DEFENSE * defensePos - IN_DEFENSE_OFFSET + Robot::drive->GetYDisplacement();
-	double robotDistFromDefenseStart = Robot::drive->GetXDisplacement();
-	double desiredAngle = 0;
+DriveToTarget::DriveToTarget(int defensePos, double targetPositionX, double targetPositionY): CommandGroup(){
+	double currentRobotAngle = Robot::drive->GetYaw();
+	double robotX = defensePos * SQ_PER_DEFENSE - DEFENSE_OFFSET + Robot::drive->GetXDisplacement() * METERS_TO_SQ;
+	double robotY = DEFENSE_START_Y + Robot::drive->GetYDisplacement() * METERS_TO_SQ;
+	double deltaX = targetPositionX - robotX;
+	double deltaY = targetPositionY - robotY;
+	double desiredAngle = -atan2(deltaX, deltaY) * 180 / M_PI;
+	AddSequential(new AutoDriveTurn(1.0, desiredAngle));
+}
+
+int DriveToTarget::mod(int a, int n){
+	return a - floor(a/n) * n;
 }
 
 void DriveToTarget::Initialize() {
