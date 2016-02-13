@@ -25,6 +25,12 @@ ArmDriveToPos::ArmDriveToPos(Arm::Position pos): Command() {
 // Called just before this Command runs the first time
 void ArmDriveToPos::Initialize() {
 	Robot::arm->ArmToPos(m_position);
+	if(Robot::arm->GetArmPos() < ARM_ASSIST_POINT && Robot::arm->GetPotValueForPos(m_position) > ARM_ASSIST_POINT) {
+		Robot::arm->ArmAssist(true);
+	}
+	else {
+		Robot::arm->ArmAssist(false);
+	}
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -34,7 +40,7 @@ void ArmDriveToPos::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ArmDriveToPos::IsFinished() {
-    return fabs(Robot::oi->GetYControl()) > 0.2 || Robot::arm->IsArmAtPoint(m_position);
+    return fabs(Robot::oi->GetYControl()) > 0 || Robot::arm->IsArmAtPoint(m_position);
 }
 
 // Called once after isFinished returns true

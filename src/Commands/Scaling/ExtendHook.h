@@ -12,6 +12,7 @@
 #ifndef EXTENDHOOK_H
 #define EXTENDHOOK_H
 
+#define ARM_MIN_EXTEND 100
 
 #include "Commands/Subsystem.h"
 #include "../../Robot.h"

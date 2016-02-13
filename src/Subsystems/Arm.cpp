@@ -25,6 +25,7 @@ Arm::Arm() : Subsystem("Arm") {
     armLift = RobotMap::armarmLift;
     armHallTop = RobotMap::armarmHallTop;
     armHallBot = RobotMap::armarmHallBot;
+    armAssist = RobotMap::armarmAssist;
     m_armLocked = false;
 }
 
@@ -46,8 +47,8 @@ bool Arm::IsArmBotLimit(){
 	return armHallBot->Get();
 }
 
-double Arm::GetArmEnc(){
-	return armPot->Get();
+double Arm::GetArmPos(){
+	return armLift->GetAnalogInRaw();
 }
 
 
@@ -100,4 +101,8 @@ void Arm::ChangeControlMode(CANTalon::ControlMode mode){
 		armLift->SetPIDSourceType(PIDSourceType::kDisplacement);
 		((std::shared_ptr<CANSpeedController>)armLift)->SetPID(1, 0, 0);
 	}
+}
+
+void Arm::ArmAssist(bool high) {
+	armAssist->Set(high);
 }

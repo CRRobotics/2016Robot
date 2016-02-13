@@ -74,8 +74,8 @@ OI::OI() {
     m_armSetScale->WhenPressed(new ArmDriveToPos(Arm::Position::POS_SCALE));
     m_armSetSally->WhenPressed(new ArmDriveToPos(Arm::Position::POS_SALLY));
 
-    m_sclExtend->WhenPressed(new ExtendHook());
-    m_sclRetract->WhenPressed(new RetractHook());
+    m_sclExtend->WhileHeld(new ExtendHook());
+    m_sclRetract->WhileHeld(new RetractHook());
 
     m_sclSetManual->WhenPressed(new ArmDriveToPos(Arm::Position::POS_SCALE));
 }
