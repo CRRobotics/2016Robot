@@ -5,6 +5,7 @@
 #include "../Drive/AutoDriveTurn.h"
 #include "../Arm/ArmDriveToPos.h"
 #include "../Acquisition/AutoEjectBall.h"
+#include "DriveToAndCrossLowBar.h"
 
 DriveToTargetAndShoot::DriveToTargetAndShoot(int defensePos, double targetPositionX, double targetPositionY): CommandGroup(){
 	double robotX = defensePos * SQ_PER_DEFENSE - DEFENSE_OFFSET + Robot::drive->GetXDisplacement() * METERS_TO_SQ;
@@ -23,6 +24,8 @@ DriveToTargetAndShoot::DriveToTargetAndShoot(int defensePos, double targetPositi
 	double targetToGoalDistance = targetToTowerDistance - TOWER_CENTER_TO_GOAL;
 	AddSequential(new AutoDriveForward(1.0, targetToGoalDistance / 2));
 	AddSequential(new AutoEjectBall());
+	AddSequential(new AutoDriveForward(1.0, -targetToGoalDistance / 2));
+	AddSequential(new DriveToAndCrossLowBar(targetPositionX, targetPositionY));
 }
 
 int DriveToTargetAndShoot::mod(int a, int n){
