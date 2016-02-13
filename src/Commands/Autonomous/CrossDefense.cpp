@@ -20,7 +20,7 @@ CrossDefense::CrossDefense(Robot::Defense def): CommandGroup(){
 			AddSequential(new AutoDriveForward(MOAT_SPEED, MOAT_IN));
 		break;
 		case Robot::Defense::RAMP:
-			AddSequential(new AutoDriveForward(RAMP_SPEED, RAMP_IN));
+//			AddSequential(new AutoDriveForward(RAMP_SPEED, RAMP_IN));
 		break;
 		case Robot::Defense::DRAW:
 			AddSequential(new ArmDriveToPos(Arm::Position::POS_DRAW));

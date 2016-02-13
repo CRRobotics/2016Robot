@@ -25,7 +25,7 @@ DriveToTargetAndShoot::DriveToTargetAndShoot(int defensePos, double targetPositi
 	AddSequential(new AutoDriveForward(1.0, targetToGoalDistance / 2));
 	AddSequential(new AutoEjectBall());
 	AddSequential(new AutoDriveForward(1.0, -targetToGoalDistance / 2));
-	AddSequential(new DriveToAndCrossLowBar(targetPositionX, targetPositionY));
+//	AddSequential(new DriveToAndCrossLowBar(targetPositionX, targetPositionY));
 }
 
 int DriveToTargetAndShoot::mod(int a, int n){

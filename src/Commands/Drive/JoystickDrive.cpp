@@ -30,8 +30,10 @@ void JoystickDrive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void JoystickDrive::Execute() {
-	Robot::drive->TankDrive(Robot::oi->GetYLeft() * fabs(Robot::oi->GetYLeft()),
-							Robot::oi->GetYRight() * fabs(Robot::oi->GetYRight ()));
+	//Robot::drive->TankDrive(Robot::oi->GetYLeft() * fabs(Robot::oi->GetYLeft()),
+	//						Robot::oi->GetYRight() * fabs(Robot::oi->GetYRight ()));
+	Robot::drive->TankDrive(Robot::oi->GetYLeft(), Robot::oi->GetYRight());
+	//changed to linear for closed loop speed control
 }
 
 // Make this return true when this Command no longer needs to run execute()

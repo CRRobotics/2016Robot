@@ -12,8 +12,12 @@
 #define MOAT_IN 40.0
 #define MOAT_SPEED 1.0
 
-#define RAMP_IN 40.0
+#define RAMP_BEFORE_IN 40.0
 #define RAMP_SPEED 1.0
+#define RAMP_CROSS_IN 10
+#define RAMP_CROSS_LSPEED 0.5
+#define RAMP_CROSS_RSPEED 1.0
+#define RAMP_AFTER_IN 10.0
 
 #define WALL_IN 40.0
 #define WALL_SPEED 1.0
