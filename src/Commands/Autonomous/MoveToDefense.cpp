@@ -16,8 +16,8 @@ void MoveToDefense::Initialize() {
 
 
 void MoveToDefense::End() {
-	Robot::drive->ahrs->ResetDisplacement();
-	Robot::drive->ahrs->ZeroYaw();
+//	Robot::drive->ahrs->ResetDisplacement();
+//	Robot::drive->ahrs->ZeroYaw();
 }
 
 void MoveToDefense::Interrupted() {
