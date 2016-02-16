@@ -34,6 +34,8 @@ void JoystickDrive::Execute() {
 	//						Robot::oi->GetYRight() * fabs(Robot::oi->GetYRight ()));
 	Robot::drive->TankDrive(Robot::oi->GetYLeft(), Robot::oi->GetYRight());
 	//changed to linear for closed loop speed control
+	SmartDashboard::PutNumber("lDriveEnc ", Robot::drive->GetLeftEnc());
+	SmartDashboard::PutNumber("rDriveEnc ", Robot::drive->GetRightEnc());
 }
 
 // Make this return true when this Command no longer needs to run execute()

@@ -14,7 +14,7 @@
 
 JoystickScale::JoystickScale(): Command() {
 	Requires(Robot::scaling.get());
-//	Requires(Robot::arm.get());
+	Requires(Robot::arm.get());
 }
 
 

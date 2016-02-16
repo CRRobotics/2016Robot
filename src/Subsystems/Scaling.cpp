@@ -96,3 +96,7 @@ void Scaling::ChangeControlMode(CANTalon::ControlMode mode){
 		((std::shared_ptr<CANSpeedController>)scaleLift)->SetPID(SmartDashboard::GetNumber("p_coeff",1),SmartDashboard::GetNumber("i_coeff",0),SmartDashboard::GetNumber("d_coeff",0));
 	}
 }
+
+double Scaling::GetCurrent(){
+	return scaleLift->GetOutputCurrent();
+}

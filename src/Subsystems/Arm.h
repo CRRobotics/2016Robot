@@ -39,7 +39,8 @@ public:
 		POS_SALLY,
 		POS_DRAW,
 		POS_DRAW_LOWER,
-		POS_SCALE
+		POS_SCALE,
+		BUMP
 	};
 
 	Arm();

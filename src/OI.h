@@ -36,6 +36,7 @@ private:
 	std::shared_ptr<JoystickButton> m_armSetPort;
 	std::shared_ptr<JoystickButton> m_armSetDown;
 	std::shared_ptr<JoystickButton> m_armSetManual;
+	std::shared_ptr<JoystickButton> m_armBump;
 
 	//Scaling
 	std::shared_ptr<JoystickButton> m_sclExtend;
