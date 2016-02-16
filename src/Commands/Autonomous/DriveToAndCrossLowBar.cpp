@@ -18,6 +18,8 @@ DriveToAndCrossLowBar::DriveToAndCrossLowBar(double robotX, double robotY){
 //	AddSequential(new AutoDriveForward(1.0, LOW_BAR_FORWARD_TO_START));
 //	AddSequential(new CrossDefense(Robot::Defense::LOW));
 //	AddSequential(new AutoDriveForward(1.0, DIST_AFTER_LOW_BAR));
+	CommandGroup* a = new CommandGroup();
+	a->AddSequential(new AutoDriveForward(1,1));
 }
 
 void DriveToAndCrossLowBar::Initialize(){
