@@ -25,7 +25,7 @@
 class AutoDriveForward: public Command {
 public:
 	AutoDriveForward(double speed, double inches);
-	AutoDriveForward(double lSpeed, double rSpeed, double inches);
+	AutoDriveForward(double lSpeed, double rSpeed, double lInches, double rInches);
 
 	virtual void Initialize();
 	virtual void Execute();
@@ -36,8 +36,10 @@ public:
 private:
 	int m_startTicksLeft;
 	int m_startTicksRight;
-	int m_ticks;
-	double m_inches;
+	int m_lTicks;
+	int m_rTicks;
+	double m_lInches;
+	double m_rInches;
 	double m_lSpeed;
 	double m_rSpeed;
 };
