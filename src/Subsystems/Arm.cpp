@@ -23,6 +23,7 @@
 #define ARM_MAX 800//TODO Update constant
 
 #define ARM_BUMP 20//TODO Update constant
+#define ARM_LOWER 20//TODO Update constant
 
 Arm::Arm() : Subsystem("Arm") {
     armPot = RobotMap::armarmPot;
@@ -76,8 +77,8 @@ double Arm::GetPotValueForPos(Position pos){
 		case Position::POS_DRAW:
 			return 2;
 		break;
-		case Position::POS_DRAW_LOWER:
-			return 1.75;
+		case Position::LOWER:
+			return GetArmPos() - ARM_LOWER;
 		break;
 		case Position::POS_PORT:
 			return 3;

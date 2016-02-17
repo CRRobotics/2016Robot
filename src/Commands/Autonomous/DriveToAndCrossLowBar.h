@@ -12,7 +12,7 @@
 
 //1 Sq = 1/2 in.
 
-class DriveToAndCrossLowBar: CommandGroup
+class DriveToAndCrossLowBar: public CommandGroup
 {
 	public:
 	DriveToAndCrossLowBar(double robotX, double robotY);

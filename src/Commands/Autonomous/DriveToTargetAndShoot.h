@@ -15,7 +15,7 @@
 #define TOWER_CENTER_Y 649
 #define TOWER_CENTER_TO_GOAL  sqrt(3) * 12 * 2 * 1.35
 
-class DriveToTargetAndShoot: CommandGroup
+class DriveToTargetAndShoot: public CommandGroup
 {
 	public:
 	DriveToTargetAndShoot(int defensePos, double targetX, double targetY);
