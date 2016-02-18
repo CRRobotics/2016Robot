@@ -8,7 +8,10 @@
 #ifndef SRC_SUBSYSTEMS_LEDS_H_
 #define SRC_SUBSYSTEMS_LEDS_H_
 
-struct color __attribute__((packed)) {
+#include <SPI.h>
+#include "WPILib.h"
+
+struct __attribute__((packed)) color {
 	uint8_t __brightness;
 	uint8_t r;
 	uint8_t g;
