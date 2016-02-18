@@ -6,6 +6,7 @@
  */
 
 #include "LEDs.h"
+#include "../Commands/LEDs/LEDRefresh.h"
 #include <algorithm>
 
 LEDs::LEDs(unsigned number) : Subsystem("LEDs") {
@@ -19,6 +20,10 @@ LEDs::LEDs(unsigned number) : Subsystem("LEDs") {
 	}
 }
 
+void LEDs::InitDefaultCommand(){
+	SetDefaultCommand(new LEDRefresh());
+}
+
 LEDs::~LEDs() {
 	free(colors);
 	delete spi;
@@ -29,7 +34,7 @@ void LEDs::Refresh() {
 	uint8_t *c = (uint8_t *)colors;
 	unsigned size = number * sizeof(struct color);
 	for(unsigned i = 0; i < size; i += 128){
-		spi->Write(c + i, std::min(size - i, 128));
+		spi->Write(c + i, (unsigned char)std::min((unsigned)(size - i), (unsigned)128));
 	}
 }
 

@@ -25,6 +25,7 @@ public:
 
 	void Refresh();
 	void Resize(unsigned n);
+	void InitDefaultCommand();
 
 	struct color *colors; // this is an array
 private:
