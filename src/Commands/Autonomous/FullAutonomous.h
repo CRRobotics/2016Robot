@@ -4,10 +4,14 @@
 #include "Commands/Subsystem.h"
 #include "../../Robot.h"
 
+#include "MoveToDefense.h"
+#include "CrossDefense.h"
+#include "DriveToTargetAndShoot.h"
+
 class FullAutonomous: public CommandGroup
 {
 	public:
-	FullAutonomous(Robot::Defense defense, int defensePos);
+	FullAutonomous(CrossDefense *cross, DriveToTargetAndShoot *shoot);
 
 	private:
 

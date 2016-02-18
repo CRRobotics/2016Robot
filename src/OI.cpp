@@ -53,7 +53,7 @@ OI::OI() {
     m_armSetManual.reset(new JoystickButton(m_cStick.get(),ARM_MANUAL));
     m_armBump.reset(new JoystickButton(m_cStick.get(), ARM_BUMP));
 
-    m_sclExtend.reset(new JoystickButton(m_cStick.get(), SCL_EXTEND));
+    //m_sclExtend.reset(new JoystickButton(m_cStick.get(), SCL_EXTEND));
     m_sclRetract.reset(new JoystickButton(m_cStick.get(), SCL_RETRACT));
     m_sclSetManual.reset(new JoystickButton(m_cStick.get(), SCL_MANUAL));
 
@@ -75,7 +75,7 @@ OI::OI() {
     m_armSetSally->WhenPressed(new ArmDriveToPos(Arm::Position::POS_SALLY));
     m_armBump->WhenPressed(new ArmDriveToPos(Arm::Position::BUMP));
 
-    m_sclExtend->WhileHeld(new ExtendHook());
+    //m_sclExtend->WhileHeld(new ExtendHook());
     m_sclRetract->WhileHeld(new RetractHook());
 
     m_sclSetManual->WhileHeld(new JoystickScale());
