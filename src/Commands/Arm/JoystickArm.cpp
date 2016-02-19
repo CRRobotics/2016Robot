@@ -30,6 +30,9 @@ void JoystickArm::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void JoystickArm::Execute() {
+//	if(!Robot::oi->GetSclMan())
+//	{
+	SmartDashboard::PutNumber("arm_pot_current", Robot::arm->GetArmPos());
 	Robot::arm->SetArmSpeed(Robot::oi->GetYControl() * fabs(Robot::oi->GetYControl()));
 	if(Robot::arm->GetArmPos() < ARM_ASSIST_POINT && Robot::oi->GetYControl() > 0) {
 		Robot::arm->ArmAssist(true);
@@ -37,6 +40,7 @@ void JoystickArm::Execute() {
 	else {
 		Robot::arm->ArmAssist(false);
 	}
+//	}
 }
 
 // Make this return true when this Command no longer needs to run execute()

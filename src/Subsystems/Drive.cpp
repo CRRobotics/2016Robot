@@ -49,8 +49,8 @@ void Drive::Shift(bool high) {
 }
 
 void Drive::TankDrive(double lSpeed, double rSpeed) {
-	lDrive1->Set(-lSpeed);
-	rDrive1->Set(rSpeed);
+	lDrive1->Set(lSpeed);
+	rDrive1->Set(-rSpeed);
 }
 
 int Drive::GetLeftEnc(){

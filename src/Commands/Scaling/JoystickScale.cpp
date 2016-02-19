@@ -24,7 +24,7 @@ void JoystickScale::Initialize() {
 
 void JoystickScale::Execute() {
 	Robot::scaling->SetExtendSpeed(Robot::oi->GetYControl());
-	SmartDashboard::PutNumber("Scale Current", Robot::scaling->GetScaleEnc());
+	SmartDashboard::PutNumber("Scale Current", Robot::scaling->GetCurrent());
 }
 
 bool JoystickScale::IsFinished() {

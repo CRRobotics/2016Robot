@@ -31,6 +31,8 @@ void AcquireBall::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void AcquireBall::Execute() {
 	Robot::acquisition->SetRollSpeed(-.6);//TODO: Maybe change 1.0 to something better and negate
+	SmartDashboard::PutBoolean("Acq Sensor 1", Robot::acquisition->GetAcqSensor1());
+	SmartDashboard::PutBoolean("Acq Sensor 2", Robot::acquisition->GetAcqSensor2());
 }
 
 // Make this return true when this Command no longer needs to run execute()

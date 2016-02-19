@@ -37,7 +37,7 @@ public:
 			POS_HOME
 	};
 	void InitDefaultCommand();
-	void SetExtendSpeed(int speed);
+	void SetExtendSpeed(double speed);
 	void ExtendToPoint(Position point);
 	void ExtendToPoint(double point);
 	bool IsExtendedToPoint(Position point);

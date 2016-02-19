@@ -24,8 +24,8 @@ std::shared_ptr<Acquisition> Robot::acquisition;
 std::shared_ptr<Arm> Robot::arm;
 std::shared_ptr<Scaling> Robot::scaling;
 std::unique_ptr<OI> Robot::oi;
-std::shared_ptr<SendableChooser> Robot::autoPositionChooser;
-std::shared_ptr<SendableChooser> Robot::autoDefenseChooser;
+SendableChooser* Robot::autoPositionChooser;
+SendableChooser* Robot::autoDefenseChooser;
 std::shared_ptr<LEDs> Robot::leds;
 
 
@@ -47,7 +47,7 @@ void Robot::RobotInit() {
 	// news. Don't move it.
 	oi.reset(new OI());
 
-	autoDefenseChooser.reset(new SendableChooser());
+	autoDefenseChooser = new SendableChooser();
 	autoDefenseChooser->AddDefault("Cheval de Frise", new CrossDefense(Defense::CHEVAL));
 	autoDefenseChooser->AddObject("Drawbridge", new CrossDefense(Defense::DRAW));
 	autoDefenseChooser->AddObject("Low Bar", new CrossDefense(Defense::LOW));
@@ -58,13 +58,15 @@ void Robot::RobotInit() {
 	autoDefenseChooser->AddObject("Sally Port", new CrossDefense(Defense::SALLY));
 	autoDefenseChooser->AddObject("Rock Wall", new CrossDefense(Defense::WALL));
 
-	autoPositionChooser.reset(new SendableChooser());
+	autoPositionChooser = new SendableChooser();
 	autoPositionChooser->AddDefault("1", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
 	autoPositionChooser->AddDefault("2", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
 	autoPositionChooser->AddDefault("3", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
 	autoPositionChooser->AddDefault("4", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
 	autoPositionChooser->AddDefault("5", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
 
+	SmartDashboard::PutData("autonomous defense chooser", autoDefenseChooser);
+	SmartDashboard::PutData("autonomous position chooser", autoPositionChooser);
 	//	autonomousCommand.reset(new AutonomousCommand());
 
 }

@@ -44,10 +44,14 @@ void Arm::SetArmSpeed(double speed)
 	double slow = 1.0;
 	if (GetArmPos() < ARM_LOW_SLOW){
 		slow = (GetArmPos() -  ARM_MIN) / (ARM_LOW_SLOW - ARM_MIN);
+		SmartDashboard::PutBoolean("Limiting Arm Speed", true);
 	}
 	else if (GetArmPos() > ARM_HIGH_SLOW){
 		slow = (GetArmPos() - ARM_HIGH_SLOW) / (ARM_MAX - ARM_HIGH_SLOW);
+		SmartDashboard::PutBoolean("Limiting Arm Speed", true);
 	}
+	else
+		SmartDashboard::PutBoolean("Limiting Arm Speed", false);
 	armLift->Set(slow * speed);
 }
 
@@ -114,7 +118,7 @@ void Arm::ChangeControlMode(CANTalon::ControlMode mode){
 	armLift->SetControlMode(mode);
 	if (mode == CANTalon::ControlMode::kPosition){
 		armLift->SetPIDSourceType(PIDSourceType::kDisplacement);
-		((std::shared_ptr<CANSpeedController>)armLift)->SetPID(1, 0, 0);
+		((std::shared_ptr<CANSpeedController>)armLift)->SetPID(SmartDashboard::GetNumber("arm_p_coeff", 1), SmartDashboard::GetNumber("arm_i_coeff", 0), SmartDashboard::GetNumber("arm_d_coeff", 0));
 	}
 }
 

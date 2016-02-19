@@ -46,3 +46,11 @@ void Acquisition::SetRollSpeed(double speed){
 bool Acquisition::IsBallAcquired(){
 	return acqSensor1->Get() || acqSensor2->Get();
 }
+
+bool Acquisition::GetAcqSensor1(){
+	return acqSensor1->Get();
+}
+
+bool Acquisition::GetAcqSensor2(){
+	return acqSensor2->Get();
+}

@@ -30,9 +30,9 @@ void JoystickDrive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void JoystickDrive::Execute() {
-	//Robot::drive->TankDrive(Robot::oi->GetYLeft() * fabs(Robot::oi->GetYLeft()),
-	//						Robot::oi->GetYRight() * fabs(Robot::oi->GetYRight ()));
-	Robot::drive->TankDrive(Robot::oi->GetYLeft(), Robot::oi->GetYRight());
+	Robot::drive->TankDrive(Robot::oi->GetYLeft() * fabs(Robot::oi->GetYLeft()),
+							Robot::oi->GetYRight() * fabs(Robot::oi->GetYRight ()));
+//	Robot::drive->TankDrive(Robot::oi->GetYLeft(), Robot::oi->GetYRight());
 	//changed to linear for closed loop speed control
 	SmartDashboard::PutNumber("lDriveEnc ", Robot::drive->GetLeftEnc());
 	SmartDashboard::PutNumber("rDriveEnc ", Robot::drive->GetRightEnc());

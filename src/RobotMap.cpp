@@ -90,8 +90,8 @@ void RobotMap::init() {
     armarmLift->SetPIDSourceType(PIDSourceType::kDisplacement);
     ((std::shared_ptr<CANSpeedController>)armarmLift)->SetPID(ARM_LIFT_P, ARM_LIFT_I, ARM_LIFT_D);
     lw->AddActuator("Arm", "armLift", armarmLift);
-    //armarmLift->ConfigFwdLimitSwitchNormallyOpen(false);
-    //armarmLift->ConfigRevLimitSwitchNormallyOpen(false);
+//    armarmLift->ConfigFwdLimitSwitchNormallyOpen(false);
+//    armarmLift->ConfigRevLimitSwitchNormallyOpen(false);
     
     armarmHallTop.reset(new DigitalInput(ARM_HALL_TOP));
     lw->AddSensor("Arm", "armHallTop", armarmHallTop);

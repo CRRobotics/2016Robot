@@ -32,18 +32,18 @@
 #define DRV_R_I DRV_L_I
 #define DRV_R_D	DRV_L_D
 
-#define DRV_L1 4
-#define DRV_L2 3
-#define DRV_R1 6
-#define DRV_R2 5
+#define DRV_L1 6
+#define DRV_L2 5
+#define DRV_R1 4
+#define DRV_R2 3
 
-#define DRV_SHIFT 0
+#define DRV_SHIFT 1
 
 #define ARM_LIFT 2
 #define ARM_HALL_TOP 6
 #define ARM_HALL_BOT 7
 #define ARM_POT 0
-#define ARM_ASSIST 2
+#define ARM_ASSIST 0
 
 #define ACQ_ROLLER 7
 #define ACQ_DI1 4
