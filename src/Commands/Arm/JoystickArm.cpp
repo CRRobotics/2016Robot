@@ -33,7 +33,8 @@ void JoystickArm::Execute() {
 //	if(!Robot::oi->GetSclMan())
 //	{
 	SmartDashboard::PutNumber("arm_pot_current", Robot::arm->GetArmPos());
-	Robot::arm->SetArmSpeed(Robot::oi->GetYControl() * fabs(Robot::oi->GetYControl()));
+	Robot::arm->SetArmSpeed(Robot::oi->GetYControl());
+	SmartDashboard::PutNumber("arm_lift_current", Robot::arm->GetCurrent());
 	if(Robot::arm->GetArmPos() < ARM_ASSIST_POINT && Robot::oi->GetYControl() > 0) {
 		Robot::arm->ArmAssist(true);
 	}

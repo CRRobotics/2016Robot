@@ -13,6 +13,9 @@
 #include "Commands/Autonomous/CrossDefense.h"
 #include "Commands/Autonomous/DriveToTargetAndShoot.h"
 #include "Commands/Autonomous/FullAutonomous.h"
+#include "Commands/Arm/ArmDriveToPos.h"
+#include "Commands/Drive/SpeedDrive.h"
+#include "Commands/Drive/JoystickFeedbackDrive.h"
 
 #define TARGET_X 262.2154
 #define TARGET_Y 550.6462
@@ -67,8 +70,18 @@ void Robot::RobotInit() {
 
 	SmartDashboard::PutData("autonomous defense chooser", autoDefenseChooser);
 	SmartDashboard::PutData("autonomous position chooser", autoPositionChooser);
+//	SmartDashboard::PutNumber("arm_test_position", 400);
+//	SmartDashboard::PutData("Arm To Test Pos", new ArmDriveToPos(Arm::Position::TEST));
 	//	autonomousCommand.reset(new AutonomousCommand());
+	SmartDashboard::PutNumber("drive_p", 1);
+	SmartDashboard::PutNumber("drive_i", 0);
+	SmartDashboard::PutNumber("drive_d", 0);
+	SmartDashboard::PutNumber("drive_f", 0);
+	SmartDashboard::PutNumber("drive_test_speed", 1);
+	SmartDashboard::PutData("Drive at Speed", new SpeedDrive(SmartDashboard::GetNumber("drive_test_speed", 0)));
+	SmartDashboard::PutData("Joystick Feedback Drive", new JoystickFeedbackDrive());
 
+	SmartDashboard::PutNumber("stick_deadband", .02);
 }
 
 /**

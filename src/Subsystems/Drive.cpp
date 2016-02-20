@@ -48,9 +48,29 @@ void Drive::Shift(bool high) {
 	shiftGear->Set(high);
 }
 
+bool Drive::GetHighGear(){
+	return shiftGear->Get();
+}
+
+void Drive::ChangeControlMode(CANTalon::ControlMode mode){
+	rDrive1->SetControlMode(mode);
+	lDrive1->SetControlMode(mode);
+	if (mode == CANTalon::ControlMode::kSpeed)
+	{
+		 rDrive1->SetPIDSourceType(PIDSourceType::kRate);
+		 lDrive1->SetPIDSourceType(PIDSourceType::kRate);
+	}
+}
+
 void Drive::TankDrive(double lSpeed, double rSpeed) {
 	lDrive1->Set(lSpeed);
 	rDrive1->Set(-rSpeed);
+}
+
+void Drive::SetDrivePID(double p, double i, double d, double f){
+    rDrive1->SetPID(p, i, d, f);
+    lDrive1->SetPID(p, i, d, f);
+    lDrive1->SetSensorDirection(true);
 }
 
 int Drive::GetLeftEnc(){
@@ -84,4 +104,12 @@ float Drive::GetXDisplacement(){
 
 float Drive::GetYDisplacement(){
 	return ahrs->GetDisplacementY();
+}
+
+double Drive::GetLEncSpeed(){
+	return lDrive1->GetEncVel();
+}
+
+double Drive::GetREncSpeed(){
+	return rDrive1->GetEncVel();
 }

@@ -42,6 +42,8 @@ void AutoDriveTurn::Initialize() {
 //	{
 //		m_speed = m_speed * -1;
 //	}
+	m_angle = SmartDashboard::GetNumber("auto_turn_test_angle", 0);
+
 	m_prop_coeff = SmartDashboard::GetNumber("turn_p_coeff",m_prop_coeff);
 	m_derivative_coeff = SmartDashboard::GetNumber("turn_d_coeff",m_derivative_coeff);
 	m_integral_coeff = SmartDashboard::GetNumber("turn_i_coeff",m_integral_coeff);

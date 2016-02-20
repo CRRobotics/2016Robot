@@ -57,13 +57,15 @@ void RobotMap::init() {
     driverDrive2->SetControlMode(CANSpeedController::ControlMode::kFollower);
     driverDrive2->Set(DRV_R1);
 
-    driverDrive1->ConfigEncoderCodesPerRev(4096);
-    drivelDrive1->ConfigEncoderCodesPerRev(4096);
+    driverDrive1->ConfigEncoderCodesPerRev(128);
+    drivelDrive1->ConfigEncoderCodesPerRev(128);
 
+    driverDrive1->SetControlMode(CANTalon::ControlMode::kSpeed);
+    drivelDrive1->SetControlMode(CANTalon::ControlMode::kSpeed);
     driverDrive1->SetPIDSourceType(PIDSourceType::kRate);
     drivelDrive1->SetPIDSourceType(PIDSourceType::kRate);
-    ((std::shared_ptr<CANSpeedController>)driverDrive1)->SetPID(DRV_R_P,DRV_R_I,DRV_R_D);
-    ((std::shared_ptr<CANSpeedController>)drivelDrive1)->SetPID(DRV_L_P,DRV_L_D,DRV_L_D);
+    driverDrive1->SetPID(DRV_R_P,DRV_R_I,DRV_R_D, DRV_L_F);
+    drivelDrive1->SetPID(DRV_L_P,DRV_L_D,DRV_L_D, DRV_R_F);
 
 
 //    drivelEnc.reset(new Encoder(0, 1, false, Encoder::k4X));
@@ -88,10 +90,11 @@ void RobotMap::init() {
     
     armarmLift.reset(new CANTalon(ARM_LIFT));
     armarmLift->SetPIDSourceType(PIDSourceType::kDisplacement);
+    armarmLift->SetFeedbackDevice(CANTalon::FeedbackDevice::AnalogPot);
     ((std::shared_ptr<CANSpeedController>)armarmLift)->SetPID(ARM_LIFT_P, ARM_LIFT_I, ARM_LIFT_D);
     lw->AddActuator("Arm", "armLift", armarmLift);
-//    armarmLift->ConfigFwdLimitSwitchNormallyOpen(false);
-//    armarmLift->ConfigRevLimitSwitchNormallyOpen(false);
+    armarmLift->ConfigFwdLimitSwitchNormallyOpen(true);
+    armarmLift->ConfigRevLimitSwitchNormallyOpen(true);
     
     armarmHallTop.reset(new DigitalInput(ARM_HALL_TOP));
     lw->AddSensor("Arm", "armHallTop", armarmHallTop);
