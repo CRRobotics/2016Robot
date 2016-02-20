@@ -72,7 +72,7 @@ void Robot::RobotInit() {
 	SmartDashboard::PutData("autonomous position chooser", autoPositionChooser);
 //	SmartDashboard::PutNumber("arm_test_position", 400);
 //	SmartDashboard::PutData("Arm To Test Pos", new ArmDriveToPos(Arm::Position::TEST));
-	//	autonomousCommand.reset(new AutonomousCommand());
+
 	SmartDashboard::PutNumber("drive_p", 1);
 	SmartDashboard::PutNumber("drive_i", 0);
 	SmartDashboard::PutNumber("drive_d", 0);
@@ -111,11 +111,15 @@ void Robot::TeleopInit() {
 	// teleop starts running. If you want the autonomous to
 	// continue until interrupted by another command, remove
 	// these lines or comment it out.
+
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Cancel();
 }
 
 void Robot::TeleopPeriodic() {
+	SmartDashboard::PutBoolean("navx_callibrating", drive->ahrs->IsCalibrating());
+	if (!drive->ahrs->IsCalibrating())
+		SmartDashboard::PutNumber("navx_yaw", drive->GetYaw());
 	Scheduler::GetInstance()->Run();
 }
 
