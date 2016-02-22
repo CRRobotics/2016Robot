@@ -63,10 +63,10 @@ void Robot::RobotInit() {
 
 	autoPositionChooser = new SendableChooser();
 	autoPositionChooser->AddDefault("1", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
-	autoPositionChooser->AddDefault("2", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
-	autoPositionChooser->AddDefault("3", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
-	autoPositionChooser->AddDefault("4", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
-	autoPositionChooser->AddDefault("5", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
+	autoPositionChooser->AddObject("2", new DriveToTargetAndShoot(2, TARGET_X, TARGET_Y));
+	autoPositionChooser->AddObject("3", new DriveToTargetAndShoot(3, TARGET_X, TARGET_Y));
+	autoPositionChooser->AddObject("4", new DriveToTargetAndShoot(4, TARGET_X, TARGET_Y));
+	autoPositionChooser->AddObject("5", new DriveToTargetAndShoot(5, TARGET_X, TARGET_Y));
 
 	SmartDashboard::PutData("autonomous defense chooser", autoDefenseChooser);
 	SmartDashboard::PutData("autonomous position chooser", autoPositionChooser);

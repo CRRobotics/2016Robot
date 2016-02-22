@@ -51,7 +51,7 @@ void Arm::SetArmSpeed(double speed)
 	}
 	else
 		SmartDashboard::PutBoolean("Limiting Arm Speed", false);
-	if (GetArmPos() < 63 && GetArmPos()>60)
+	if (GetArmPos() < 63 && GetArmPos() > 60)
 		slow = 0.75;
 	armLift->Set(slow * speed);
 }
