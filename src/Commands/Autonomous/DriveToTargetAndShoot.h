@@ -26,7 +26,6 @@ class DriveToTargetAndShoot: public CommandGroup
 
 	private:
 
-	int mod(int a, int n);
 
 };
 

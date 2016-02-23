@@ -87,7 +87,7 @@ void Drive::ResetNavX(){
 }
 
 float Drive::GetYaw(){
-	return ahrs->GetAngle();
+	return ahrs->GetYaw();
 }
 
 float Drive::GetXAccel(){

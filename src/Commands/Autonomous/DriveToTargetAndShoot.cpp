@@ -28,9 +28,6 @@ DriveToTargetAndShoot::DriveToTargetAndShoot(int defensePos, double targetPositi
 	AddSequential(new DriveToAndCrossLowBar(targetPositionX, targetPositionY));
 }
 
-int DriveToTargetAndShoot::mod(int a, int n){
-	return a - floor(a/n) * n;
-}
 
 void DriveToTargetAndShoot::Initialize() {
 

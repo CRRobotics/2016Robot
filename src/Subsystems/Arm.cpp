@@ -80,7 +80,7 @@ double Arm::GetPotValueForPos(Position pos){
 			return 1;
 		break;
 		case Position::POS_DRAW:
-			return 2;
+			return 50;
 		break;
 		case Position::LOWER:
 			return GetArmPos() - ARM_LOWER;

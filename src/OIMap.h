@@ -23,12 +23,12 @@
 
 //Scaling
 #define SCL_EXTEND 6
-#define SCL_RETRACT 4
+#define SCL_RETRACT 7
 #define SCL_MANUAL 6
 
 //Arm
 #define ARM_SCALE_POS 15
-#define ARM_DRAW_POS 7
+#define ARM_DRAW_POS 16
 #define ARM_PORT_POS 8
 #define ARM_DOWN_POS 9
 #define ARM_SALLY_POS 10
