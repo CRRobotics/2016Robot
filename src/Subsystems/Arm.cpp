@@ -77,7 +77,7 @@ double Arm::GetPotValueForPos(Position pos){
 	switch (pos)
 	{
 		case Position::POS_DOWN:
-			return 1;
+			return 50;
 		break;
 		case Position::POS_DRAW:
 			return 50;
