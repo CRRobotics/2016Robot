@@ -97,7 +97,7 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-	autonomousCommand.reset(new FullAutonomous((CrossDefense*) autoDefenseChooser->GetSelected(),(DriveToTargetAndShoot*) autoPositionChooser->GetSelected()));
+	autonomousCommand.reset(new FullAutonomous());
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Start();
 }

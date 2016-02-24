@@ -2,7 +2,7 @@
 #define MOVETODEFENSE_H
 
 //TODO Determine Constant
-#define INCHESTODEFENSE 50
+#define INCHESTODEFENSE 10
 
 #include "Commands/Subsystem.h"
 #include "../../Robot.h"

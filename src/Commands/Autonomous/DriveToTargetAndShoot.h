@@ -25,7 +25,9 @@ class DriveToTargetAndShoot: public CommandGroup
 	virtual void Interrupted();
 
 	private:
-
+	int m_defensePos;
+	double m_targetX;
+	double m_targetY;
 
 };
 

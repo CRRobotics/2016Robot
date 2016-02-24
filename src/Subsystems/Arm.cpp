@@ -18,10 +18,12 @@
 
 #define ARM_MIN 18
 #define ARM_LOW_SLOW 271
-#define ARM_HIGH_SLOW 725
-#define ARM_MAX 978
+#define ARM_HIGH_SLOW 534
+#define ARM_MAX 787
+//#define ARM_HIGH_SLOW 725
+//#define ARM_MAX 978
 
-#define ARM_BUMP 20//TODO Update constant
+#define ARM_BUMP 60//TODO Update constant
 #define ARM_LOWER 20//TODO Update constant
 
 Arm::Arm() : Subsystem("Arm") {
@@ -70,35 +72,38 @@ double Arm::GetArmPos(){
 
 
 bool Arm::IsArmAtPoint(Position pos){
-	return fabs(armPot->Get() - GetPotValueForPos(pos)) < 0.2;
+	return fabs(armPot->Get() - GetPotValueForPos(pos)) < 5;
 }
 
 double Arm::GetPotValueForPos(Position pos){
 	switch (pos)
 	{
 		case Position::POS_DOWN:
-			return 50;
+			return 70;
 		break;
 		case Position::POS_DRAW:
-			return 50;
+			return 200;
 		break;
 		case Position::LOWER:
 			return GetArmPos() - ARM_LOWER;
 		break;
 		case Position::POS_PORT:
-			return 3;
+			return 200;
 		break;
 		case Position::POS_SALLY:
-			return 4;
+			return 200;
 		break;
 		case Position::POS_SCALE:
-			return 5;
+			return 200;
 		break;
 		case Position::BUMP:
 			return GetArmPos() + ARM_BUMP;
 		break;
 		case Position::TEST:
 			return SmartDashboard::GetNumber("arm_test_position", 400);
+		case Position::POS_START:
+			return 719;
+		break;
 		default:
 			return -1;
 	}

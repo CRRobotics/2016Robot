@@ -11,9 +11,9 @@
 
 #include "AutoDriveTurn.h"
 
-double AutoDriveTurn::m_derivative_coeff = 0.01;
-double AutoDriveTurn::m_integral_coeff = 0.01;
-double AutoDriveTurn::m_prop_coeff = 0.01;
+double AutoDriveTurn::m_derivative_coeff = 0.1;
+double AutoDriveTurn::m_integral_coeff = 0;
+double AutoDriveTurn::m_prop_coeff = 0;
 int counter = 0;
 
 AutoDriveTurn::AutoDriveTurn(double angle): Command() {
@@ -40,13 +40,8 @@ void AutoDriveTurn::Initialize() {
 //		m_speed = m_speed * -1;
 //	}
 	counter = 0;
-	Robot::drive->ahrs->ZeroYaw();
-	m_angle = SmartDashboard::GetNumber("auto_turn_test_angle", 0);
-	//TODO REMOVE LINES ABOVE, for testing only
+	SmartDashboard::PutString("auto_stage", "turning");
 
-	m_prop_coeff = SmartDashboard::GetNumber("turn_p_coeff",m_prop_coeff);
-	m_derivative_coeff = SmartDashboard::GetNumber("turn_d_coeff",m_derivative_coeff);
-	m_integral_coeff = SmartDashboard::GetNumber("turn_i_coeff",m_integral_coeff);
 }
 
 // Called repeatedly when this Command is scheduled to run

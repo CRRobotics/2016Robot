@@ -39,6 +39,7 @@ public:
 		POS_SALLY,
 		POS_DRAW,
 		POS_SCALE,
+		POS_START,
 		BUMP,
 		LOWER,
 		TEST

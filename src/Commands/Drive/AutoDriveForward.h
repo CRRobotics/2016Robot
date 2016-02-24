@@ -12,7 +12,7 @@
 #ifndef AUTODRIVEFORWARD_H
 #define AUTODRIVEFORWARD_H
 #define IN_PER_PULSE .003
-#define PULSE_PER_IN 1/.003
+#define PULSE_PER_IN 483.74537
 
 #include "Commands/Subsystem.h"
 #include "../../Robot.h"

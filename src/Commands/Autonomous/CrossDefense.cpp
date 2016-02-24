@@ -96,16 +96,16 @@ CrossDefense::CrossDefense(Robot::Defense def): CommandGroup(){
 		case Robot::Defense::ROUGH:
 			AddSequential(new AutoDriveForward(ROUGH_SPEED, ROUGH_IN));
 		break;
-		case Robot::Defense::LOW:
+		case Robot::Defense::LOW://TODO FLIP ROBOT FOR THIS ONE
 			AddSequential(new AutoDriveForward(LOW_SPEED, LOW_IN));
 		break;
-		default:
-			return;//Come up with default case
+
 	}
+	SmartDashboard::PutString("auto_stage", "cross defense");
 }
 
 void CrossDefense::Initialize() {
-
+	SmartDashboard::PutString("auto_stage_overall", "cross defense");
 }
 
 

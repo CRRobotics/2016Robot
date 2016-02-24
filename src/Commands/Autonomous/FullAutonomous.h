@@ -12,6 +12,7 @@ class FullAutonomous: public CommandGroup
 {
 	public:
 	FullAutonomous(CrossDefense *cross, DriveToTargetAndShoot *shoot);
+	FullAutonomous();
 
 	private:
 
