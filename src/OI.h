@@ -30,6 +30,7 @@ private:
 	std::shared_ptr<JoystickButton> m_drvShiftLow;
 
 	//Arm
+	std::shared_ptr<JoystickButton> m_armSetStart;
 	std::shared_ptr<JoystickButton> m_armSetScale;
 	std::shared_ptr<JoystickButton> m_armSetDraw;
 	std::shared_ptr<JoystickButton> m_armSetSally;

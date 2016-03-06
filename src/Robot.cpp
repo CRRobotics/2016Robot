@@ -13,6 +13,9 @@
 #include "Commands/Autonomous/CrossDefense.h"
 #include "Commands/Autonomous/DriveToTargetAndShoot.h"
 #include "Commands/Autonomous/FullAutonomous.h"
+#include "Commands/Arm/ArmDriveToPos.h"
+#include "Commands/Drive/SpeedDrive.h"
+#include "Commands/Drive/JoystickFeedbackDrive.h"
 
 #define TARGET_X 262.2154
 #define TARGET_Y 550.6462
@@ -65,15 +68,25 @@ void Robot::RobotInit() {
 
 	autoPositionChooser = new SendableChooser();
 	autoPositionChooser->AddDefault("1", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
-	autoPositionChooser->AddDefault("2", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
-	autoPositionChooser->AddDefault("3", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
-	autoPositionChooser->AddDefault("4", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
-	autoPositionChooser->AddDefault("5", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
+	autoPositionChooser->AddObject("2", new DriveToTargetAndShoot(2, TARGET_X, TARGET_Y));
+	autoPositionChooser->AddObject("3", new DriveToTargetAndShoot(3, TARGET_X, TARGET_Y));
+	autoPositionChooser->AddObject("4", new DriveToTargetAndShoot(4, TARGET_X, TARGET_Y));
+	autoPositionChooser->AddObject("5", new DriveToTargetAndShoot(5, TARGET_X, TARGET_Y));
 
 	SmartDashboard::PutData("autonomous defense chooser", autoDefenseChooser);
 	SmartDashboard::PutData("autonomous position chooser", autoPositionChooser);
-	//	autonomousCommand.reset(new AutonomousCommand());
+//	SmartDashboard::PutNumber("arm_test_position", 400);
+//	SmartDashboard::PutData("Arm To Test Pos", new ArmDriveToPos(Arm::Position::TEST));
 
+	SmartDashboard::PutNumber("drive_p", 1);
+	SmartDashboard::PutNumber("drive_i", 0);
+	SmartDashboard::PutNumber("drive_d", 0);
+	SmartDashboard::PutNumber("drive_f", 0);
+	SmartDashboard::PutNumber("drive_test_speed", 1);
+	SmartDashboard::PutData("Drive at Speed", new SpeedDrive(SmartDashboard::GetNumber("drive_test_speed", 0)));
+	SmartDashboard::PutData("Joystick Feedback Drive", new JoystickFeedbackDrive());
+
+	SmartDashboard::PutNumber("stick_deadband", .02);
 }
 
 /**
@@ -89,7 +102,7 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-	autonomousCommand.reset(new FullAutonomous((CrossDefense*) autoDefenseChooser->GetSelected(),(DriveToTargetAndShoot*) autoPositionChooser->GetSelected()));
+	autonomousCommand.reset(new FullAutonomous());
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Start();
 }
@@ -103,11 +116,15 @@ void Robot::TeleopInit() {
 	// teleop starts running. If you want the autonomous to
 	// continue until interrupted by another command, remove
 	// these lines or comment it out.
+
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Cancel();
 }
 
 void Robot::TeleopPeriodic() {
+	SmartDashboard::PutBoolean("navx_callibrating", drive->ahrs->IsCalibrating());
+	if (!drive->ahrs->IsCalibrating())
+		SmartDashboard::PutNumber("navx_yaw", drive->GetYaw());
 	Scheduler::GetInstance()->Run();
 }
 

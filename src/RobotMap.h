@@ -27,10 +27,12 @@
 #define DRV_L_P 1
 #define DRV_L_I 0
 #define DRV_L_D 0
+#define DRV_L_F 0
 
 #define DRV_R_P DRV_L_P
 #define DRV_R_I DRV_L_I
 #define DRV_R_D	DRV_L_D
+#define DRV_R_F DRV_L_F
 
 #define DRV_L1 6
 #define DRV_L2 5
@@ -46,8 +48,8 @@
 #define ARM_ASSIST 0
 
 #define ACQ_ROLLER 7
-#define ACQ_DI1 4
-#define ACQ_DI2 5
+#define ACQ_DI1 0
+#define ACQ_DI2 1
 
 #define SCL_LFT 8
 #define SCL_LMT 10
