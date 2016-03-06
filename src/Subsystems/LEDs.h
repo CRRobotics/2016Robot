@@ -8,14 +8,15 @@
 #ifndef SRC_SUBSYSTEMS_LEDS_H_
 #define SRC_SUBSYSTEMS_LEDS_H_
 
-#include <SPI.h>
 #include "WPILib.h"
+#include <stdio.h>
+#include <unistd.h>
 
 struct __attribute__((packed)) color {
 	uint8_t __brightness;
-	uint8_t r;
-	uint8_t g;
 	uint8_t b;
+	uint8_t g;
+	uint8_t r;
 };
 
 class LEDs : public Subsystem {
@@ -27,9 +28,9 @@ public:
 	void Resize(unsigned n);
 	void InitDefaultCommand();
 
-	struct color *colors; // this is an array
+	std::vector<struct color> *colors;
 private:
-	SPI *spi;
+	FILE *spif;
 	unsigned number;
 
 };

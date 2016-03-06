@@ -8,15 +8,15 @@
 #include "LEDs.h"
 #include "../Commands/LEDs/LEDRefresh.h"
 #include <algorithm>
+#include <vector>
 
 LEDs::LEDs(unsigned number) : Subsystem("LEDs") {
 	// TODO Auto-generated constructor stub
 	this->number = number;
-	colors = (struct color *) calloc(number, sizeof(struct color));
-	spi = new SPI(SPI::Port::kOnboardCS0);
-	spi->SetClockRate(4000000);
+	colors = new std::vector<struct color>(number);
+	spif = fopen("/dev/spidev0.0", "wb");
 	for(unsigned i = 0; i < number; i++){
-		colors[i].__brightness = 0xff;
+		(*colors)[i].__brightness = 0xff;
 	}
 }
 
@@ -25,23 +25,27 @@ void LEDs::InitDefaultCommand(){
 }
 
 LEDs::~LEDs() {
-	free(colors);
-	delete spi;
+	delete colors;
+	fclose(spif);
 	// TODO Auto-generated destructor stub
 }
 
 void LEDs::Refresh() {
-	uint8_t *c = (uint8_t *)colors;
-	unsigned size = number * sizeof(struct color);
-	for(unsigned i = 0; i < size; i += 128){
-		spi->Write(c + i, (unsigned char)std::min((unsigned)(size - i), (unsigned)128));
-	}
+	fprintf(stderr, "refresh\n");
+	uint8_t *c = (uint8_t *)colors->data();
+	//for(unsigned i = 0; i < size; i += 128){
+	//	spi->Write(c + i, (unsigned char)std::min((unsigned)(size - i), (unsigned)128));
+	//}
+	fwrite("\x00\x00\x00\x00", 4, 1, spif);
+	fwrite(c, sizeof(struct color), number, spif);
+	fwrite("\xff\xff\xff\xff", 4, 1, spif);
+	fflush(spif);
 }
 
 void LEDs::Resize(unsigned n){
-	colors = (struct color *)realloc(colors, n * sizeof(struct color));
+	colors->resize(n);
 	for(unsigned i = number; i < n; i++){
-		colors[i].__brightness = 0xff;
+		(*colors)[i].__brightness = 0xff;
 	}
 	number = n;
 }

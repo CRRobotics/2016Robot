@@ -22,8 +22,7 @@ LEDRefresh::LEDRefresh(): Command() {
 // Called just before this Command runs the first time
 void LEDRefresh::Initialize() {
 	for(int i = 0; i < 120; i++){
-		struct color *c = &(Robot::leds->colors[i]);
-		c->r = 0xff;
+		(*Robot::leds->colors)[i].r = 0x10;
 	}
 }
 
