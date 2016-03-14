@@ -21,7 +21,7 @@ LEDRefresh::LEDRefresh(): Command() {
 
 // Called just before this Command runs the first time
 void LEDRefresh::Initialize() {
-	for(int i = 0; i < 120; i++){
+	for(int i = 0; i < 88; i++){
 		(*Robot::leds->colors)[i].r = 0x10;
 	}
 }

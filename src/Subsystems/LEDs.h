@@ -29,6 +29,7 @@ public:
 	void InitDefaultCommand();
 
 	std::vector<struct color> *colors;
+	unsigned offset;
 private:
 	FILE *spif;
 	unsigned number;
