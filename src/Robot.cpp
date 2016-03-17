@@ -114,7 +114,7 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-//	autonomousCommand.reset();
+	autonomousCommand.reset(new LowBarAuton());
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Start();
 }

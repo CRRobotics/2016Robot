@@ -94,7 +94,7 @@ double Arm::GetPotValueForPos(Position pos){
 			return 200;
 		break;
 		case Position::POS_SCALE:
-			return 925;
+			return 940	;
 		break;
 		case Position::BUMP:
 			return GetArmPos() + ARM_BUMP;

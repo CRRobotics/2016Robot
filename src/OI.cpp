@@ -146,7 +146,7 @@ double OI::GetYRight(){
 
 double OI::GetYControl(){
 	double value = m_cStick->GetY();
-	if(fabs(value) < .01) {
+	if(fabs(value) < .05) {
 		return 0;
 	}
 	else {
