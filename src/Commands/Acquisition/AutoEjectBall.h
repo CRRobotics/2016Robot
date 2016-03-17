@@ -16,7 +16,6 @@
 #include "Commands/Subsystem.h"
 #include "../../Robot.h"
 
-#define SECONDS_EJECT_ON 5
 
 /**
  *

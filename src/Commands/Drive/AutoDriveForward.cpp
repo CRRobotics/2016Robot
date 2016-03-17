@@ -16,7 +16,7 @@
 
 #define SLOW_DIST 12 * PULSE_PER_IN
 
-#define IN_OFFSET 5.5
+#define IN_OFFSET 0
 
 AutoDriveForward::AutoDriveForward(double speed, double inches): Command() {
         // Use requires() here to declare subsystem dependencies
