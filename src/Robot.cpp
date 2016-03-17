@@ -16,6 +16,8 @@
 #include "Commands/Arm/ArmDriveToPos.h"
 #include "Commands/Drive/SpeedDrive.h"
 #include "Commands/Drive/JoystickFeedbackDrive.h"
+#include "Commands/Autonomous/LowBarAuton.h"
+
 
 #define TARGET_X 262.2154
 #define TARGET_Y 550.6462
@@ -112,7 +114,7 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-	autonomousCommand.reset(new FullAutonomous());
+//	autonomousCommand.reset();
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Start();
 }

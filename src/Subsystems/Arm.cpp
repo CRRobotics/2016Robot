@@ -16,10 +16,10 @@
 #include "../Commands/Arm/JoystickArm.h"
 
 
-#define ARM_MIN 18
-#define ARM_LOW_SLOW 271
-#define ARM_HIGH_SLOW 534
-#define ARM_MAX 787
+#define ARM_MIN 28
+#define ARM_LOW_SLOW 281
+#define ARM_HIGH_SLOW 544
+#define ARM_MAX 797
 //#define ARM_HIGH_SLOW 725
 //#define ARM_MAX 978
 
@@ -53,7 +53,7 @@ void Arm::SetArmSpeed(double speed)
 	}
 	else
 		SmartDashboard::PutBoolean("Limiting Arm Speed", false);
-	if (GetArmPos() < 63 && GetArmPos() > 60)
+	if (GetArmPos() < 73 && GetArmPos() > 70)
 		slow = 0.75;
 	armLift->Set(slow * speed);
 }
@@ -79,7 +79,7 @@ double Arm::GetPotValueForPos(Position pos){
 	switch (pos)
 	{
 		case Position::POS_DOWN:
-			return 70;
+			return 60;
 		break;
 		case Position::POS_DRAW:
 			return 200;
@@ -94,7 +94,7 @@ double Arm::GetPotValueForPos(Position pos){
 			return 200;
 		break;
 		case Position::POS_SCALE:
-			return 200;
+			return 925;
 		break;
 		case Position::BUMP:
 			return GetArmPos() + ARM_BUMP;
@@ -102,10 +102,10 @@ double Arm::GetPotValueForPos(Position pos){
 		case Position::TEST:
 			return SmartDashboard::GetNumber("arm_test_position", 400);
 		case Position::POS_START:
-			return 719;
+			return 729;
 		break;
 		default:
-			return -1;
+			return 200;
 	}
 }
 

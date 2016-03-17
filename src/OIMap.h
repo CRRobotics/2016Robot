@@ -27,13 +27,13 @@
 #define SCL_MANUAL 8
 
 //Arm
-#define ARM_SCALE_POS 15
-#define ARM_DRAW_POS 16
-#define ARM_PORT_POS 8
-#define ARM_DOWN_POS 16
-#define ARM_SALLY_POS 10
-#define ARM_SET_MODE 11
-#define ARM_MANUAL 12
+#define ARM_SCALE_POS 11
+#define ARM_DRAW_POS 20
+#define ARM_PORT_POS 20
+#define ARM_DOWN_POS 20
+#define ARM_SALLY_POS 20
+#define ARM_SET_MODE 20
+#define ARM_MANUAL 20
 #define ARM_BUMP 1
 #define ARM_START_POS 9
 
