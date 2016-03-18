@@ -7,10 +7,11 @@
 
 LowBarAuton::LowBarAuton(){
 	AddSequential(new ShiftLow());
-	AddSequential(new AutoDriveForward(1,24));
+	AddSequential(new AutoDriveForward(.75,24));
 	AddSequential(new ArmDriveToPos(Arm::Position::POS_DOWN),3);
-	AddSequential(new AutoDriveForward(1, 213));
-	AddSequential(new AutoDriveTurn(60));
-	AddSequential(new AutoDriveForward(1,150));
-	AddSequential(new AutoEjectBall());
+	AddSequential(new AutoDriveForward(.75, 180));
+	//AddSequential(new AutoDriveForward(.75, 213));
+	//AddSequential(new AutoDriveTurn(60));
+	//AddSequential(new AutoDriveForward(.5,150));
+	//AddSequential(new AutoEjectBall());
 }

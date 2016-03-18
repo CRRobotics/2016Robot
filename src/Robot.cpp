@@ -17,7 +17,10 @@
 #include "Commands/Drive/SpeedDrive.h"
 #include "Commands/Drive/JoystickFeedbackDrive.h"
 #include "Commands/Autonomous/LowBarAuton.h"
-
+#include "Commands/Autonomous/ChevalAuton.h"
+#include "Commands/Autonomous/RampartsAuton.h"
+#include "Commands/Autonomous/SimpleDriveAuton.h"
+#include "Commands/Drive/AutoDriveForward.h"
 
 #define TARGET_X 262.2154
 #define TARGET_Y 550.6462
@@ -68,25 +71,31 @@ void Robot::RobotInit() {
 	oi.reset(new OI());
 
 	autoDefenseChooser = new SendableChooser();
-	autoDefenseChooser->AddDefault("Cheval de Frise", new CrossDefense(Defense::CHEVAL));
-	autoDefenseChooser->AddObject("Drawbridge", new CrossDefense(Defense::DRAW));
-	autoDefenseChooser->AddObject("Low Bar", new CrossDefense(Defense::LOW));
-	autoDefenseChooser->AddObject("Moat", new CrossDefense(Defense::MOAT));
-	autoDefenseChooser->AddObject("Porticullis", new CrossDefense(Defense::PORT));
-	autoDefenseChooser->AddObject("Ramparts", new CrossDefense(Defense::RAMP));
-	autoDefenseChooser->AddObject("Rough Terrain", new CrossDefense(Defense::ROUGH));
-	autoDefenseChooser->AddObject("Sally Port", new CrossDefense(Defense::SALLY));
-	autoDefenseChooser->AddObject("Rock Wall", new CrossDefense(Defense::WALL));
-
-	autoPositionChooser = new SendableChooser();
-	autoPositionChooser->AddDefault("1", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
-	autoPositionChooser->AddObject("2", new DriveToTargetAndShoot(2, TARGET_X, TARGET_Y));
-	autoPositionChooser->AddObject("3", new DriveToTargetAndShoot(3, TARGET_X, TARGET_Y));
-	autoPositionChooser->AddObject("4", new DriveToTargetAndShoot(4, TARGET_X, TARGET_Y));
-	autoPositionChooser->AddObject("5", new DriveToTargetAndShoot(5, TARGET_X, TARGET_Y));
+	autoDefenseChooser->AddDefault("Low bar", new LowBarAuton());
+	autoDefenseChooser->AddObject("Cheval de Frise", new ChevalAuton());
+	autoDefenseChooser->AddObject("Ramparts", new RampartsAuton());
+	autoDefenseChooser->AddObject("Drive Forward", new SimpleDriveAuton());
+	autoDefenseChooser->AddObject("Reach defense", new AutoDriveForward(.5, 48));
+	autoDefenseChooser->AddObject("Nothing", new CommandGroup());
+//	autoDefenseChooser->AddDefault("Cheval de Frise", new CrossDefense(Defense::CHEVAL));
+//	autoDefenseChooser->AddObject("Drawbridge", new CrossDefense(Defense::DRAW));
+//	autoDefenseChooser->AddObject("Low Bar", new CrossDefense(Defense::LOW));
+//	autoDefenseChooser->AddObject("Moat", new CrossDefense(Defense::MOAT));
+//	autoDefenseChooser->AddObject("Porticullis", new CrossDefense(Defense::PORT));
+//	autoDefenseChooser->AddObject("Ramparts", new CrossDefense(Defense::RAMP));
+//	autoDefenseChooser->AddObject("Rough Terrain", new CrossDefense(Defense::ROUGH));
+//	autoDefenseChooser->AddObject("Sally Port", new CrossDefense(Defense::SALLY));
+//	autoDefenseChooser->AddObject("Rock Wall", new CrossDefense(Defense::WALL));
+//
+//	autoPositionChooser = new SendableChooser();
+//	autoPositionChooser->AddDefault("1", new DriveToTargetAndShoot(1, TARGET_X, TARGET_Y));
+//	autoPositionChooser->AddObject("2", new DriveToTargetAndShoot(2, TARGET_X, TARGET_Y));
+//	autoPositionChooser->AddObject("3", new DriveToTargetAndShoot(3, TARGET_X, TARGET_Y));
+//	autoPositionChooser->AddObject("4", new DriveToTargetAndShoot(4, TARGET_X, TARGET_Y));
+//	autoPositionChooser->AddObject("5", new DriveToTargetAndShoot(5, TARGET_X, TARGET_Y));
 
 	SmartDashboard::PutData("autonomous defense chooser", autoDefenseChooser);
-	SmartDashboard::PutData("autonomous position chooser", autoPositionChooser);
+//	SmartDashboard::PutData("autonomous position chooser", autoPositionChooser);
 //	SmartDashboard::PutNumber("arm_test_position", 400);
 //	SmartDashboard::PutData("Arm To Test Pos", new ArmDriveToPos(Arm::Position::TEST));
 
@@ -114,7 +123,7 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-	autonomousCommand.reset(new LowBarAuton());
+	autonomousCommand.reset((Command *)autoDefenseChooser->GetSelected());
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Start();
 }
