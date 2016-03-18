@@ -21,6 +21,7 @@
 #include "Commands/Autonomous/RampartsAuton.h"
 #include "Commands/Autonomous/SimpleDriveAuton.h"
 #include "Commands/Drive/AutoDriveForward.h"
+#include "Commands/Autonomous/LowBarAndShootAuton.h"
 
 #define TARGET_X 262.2154
 #define TARGET_Y 550.6462
@@ -72,6 +73,7 @@ void Robot::RobotInit() {
 
 	autoDefenseChooser = new SendableChooser();
 	autoDefenseChooser->AddDefault("Low bar", new LowBarAuton());
+	autoDefenseChooser->AddObject("Low bar and shoot", new LowBarAndShootAuton());
 	autoDefenseChooser->AddObject("Cheval de Frise", new ChevalAuton());
 	autoDefenseChooser->AddObject("Ramparts", new RampartsAuton());
 	autoDefenseChooser->AddObject("Drive Forward", new SimpleDriveAuton());
@@ -96,8 +98,8 @@ void Robot::RobotInit() {
 
 	SmartDashboard::PutData("autonomous defense chooser", autoDefenseChooser);
 //	SmartDashboard::PutData("autonomous position chooser", autoPositionChooser);
-//	SmartDashboard::PutNumber("arm_test_position", 400);
-//	SmartDashboard::PutData("Arm To Test Pos", new ArmDriveToPos(Arm::Position::TEST));
+	SmartDashboard::PutNumber("arm_test_position", 400);
+	SmartDashboard::PutData("Arm To Test Pos", new ArmDriveToPos(Arm::Position::TEST));
 
 	SmartDashboard::PutNumber("drive_p", 1);
 	SmartDashboard::PutNumber("drive_i", 0);
@@ -107,7 +109,7 @@ void Robot::RobotInit() {
 	SmartDashboard::PutData("Drive at Speed", new SpeedDrive(SmartDashboard::GetNumber("drive_test_speed", 0)));
 	SmartDashboard::PutData("Joystick Feedback Drive", new JoystickFeedbackDrive());
 
-	SmartDashboard::PutNumber("stick_deadband", .02);
+//	SmartDashboard::PutNumber("stick_deadband", .02);
 	SmartDashboard::PutBoolean("arm_done", false);
 }
 

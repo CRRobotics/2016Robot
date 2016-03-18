@@ -126,7 +126,7 @@ std::shared_ptr<Joystick> OI::getcJoystick() {
 
 double OI::GetYLeft(){
 	double value = m_lStick->GetY();
-	if(fabs(value) < SmartDashboard::GetNumber("stick_deadband", .02)) {
+	if(fabs(value) < .02){//SmartDashboard::GetNumber("stick_deadband", .02)) {
 		return 0;
 	}
 	else {
@@ -136,7 +136,7 @@ double OI::GetYLeft(){
 
 double OI::GetYRight(){
 	double value = m_rStick->GetY();
-	if(fabs(value) < SmartDashboard::GetNumber("stick_deadband", .02)) {
+	if(fabs(value) < .02){//SmartDashboard::GetNumber("stick_deadband", .02)) {
 		return 0;
 	}
 	else {

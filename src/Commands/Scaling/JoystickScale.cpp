@@ -10,7 +10,8 @@
 
 
 #include "JoystickScale.h"
-
+#define SCALE_MAX_ENC -10000 + 200
+#define SCALE_MIN_ENC 0
 
 JoystickScale::JoystickScale(): Command() {
 	Requires(Robot::scaling.get());
@@ -23,7 +24,9 @@ void JoystickScale::Initialize() {
 }
 
 void JoystickScale::Execute() {
-	Robot::scaling->SetExtendSpeed(Robot::oi->GetYControl());
+//	if (!(Robot::oi->GetYControl() < 0 && Robot::scaling->GetScaleEnc() < SCALE_MAX_ENC)
+//		&& !(Robot::oi->GetYControl() > 0 && Robot::scaling->GetScaleEnc() > SCALE_MIN_ENC))
+		Robot::scaling->SetExtendSpeed(Robot::oi->GetYControl());
 	SmartDashboard::PutNumber("Scale Current", Robot::scaling->GetCurrent());
 	SmartDashboard::PutNumber("Scale Enc", Robot::scaling->GetScaleEnc());
 }

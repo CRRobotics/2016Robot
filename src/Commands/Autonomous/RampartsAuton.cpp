@@ -6,9 +6,8 @@
 #include "../Acquisition/AutoEjectBall.h"
 
 RampartsAuton::RampartsAuton(){
+	AddParallel(new ArmDriveToPos(Arm::Position::POS_SALLY));
 	AddSequential(new ShiftLow());
 	AddSequential(new AutoDriveForward(1,24));
-	AddSequential(new ArmDriveToPos(Arm::Position::POS_DOWN),3);
-	AddSequential(new AutoDriveForward(1, 0.8, 40, 32));
-	AddSequential(new AutoDriveForward(0.9, 1, 36, 40));
+	AddSequential(new AutoDriveForward(.75,120));
 }
