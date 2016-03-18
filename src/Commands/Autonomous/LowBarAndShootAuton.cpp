@@ -10,9 +10,10 @@ LowBarAndShootAuton::LowBarAndShootAuton(){
 	AddSequential(new ShiftLow());
 	AddSequential(new AutoDriveForward(.75,24));
 	AddSequential(new ArmDriveToPos(Arm::Position::POS_DOWN),3);
-	AddSequential(new AutoDriveForward(.75, 213));
+	AddSequential(new AutoDriveForward(.75, 144));
 	AddSequential(new ResetDisplacement());
-	AddSequential(new AutoDriveTurn(60));
-	AddSequential(new AutoDriveForward(.5,150));
-	AddSequential(new AutoEjectBall());
+	AddSequential(new AutoDriveTurn(5));
+	AddSequential(new AutoDriveForward(.75, 60.219));
+	AddSequential(new AutoDriveTurn(55));
+	AddSequential(new AutoDriveForward(.75, 135.0203));
 }

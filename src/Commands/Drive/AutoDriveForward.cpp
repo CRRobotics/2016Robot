@@ -44,10 +44,10 @@ AutoDriveForward::AutoDriveForward(double lSpeed, double rSpeed, double lInches,
 
 // Called just before this Command runs the first time
 void AutoDriveForward::Initialize() {
-//	m_lTicks = (SmartDashboard::GetNumber("auto_forward_in", 0) - IN_OFFSET) * PULSE_PER_IN;
-//	m_rTicks = (SmartDashboard::GetNumber("auto_forward_in", 0) - IN_OFFSET) * PULSE_PER_IN;
-//	m_lSpeed = SmartDashboard::GetNumber("auto_forward_speed", 0);
-//	m_rSpeed = SmartDashboard::GetNumber("auto_forward_speed", 0);
+	m_lTicks = (SmartDashboard::GetNumber("auto_forward_in", 0) - IN_OFFSET) * PULSE_PER_IN;
+	m_rTicks = (SmartDashboard::GetNumber("auto_forward_in", 0) - IN_OFFSET) * PULSE_PER_IN;
+	m_lSpeed = SmartDashboard::GetNumber("auto_forward_speed", 0);
+	m_rSpeed = SmartDashboard::GetNumber("auto_forward_speed", 0);
 	//TODO REMOVE LINES ABOVE, for testing only
 	m_startTicksLeft = Robot::drive->GetLeftEnc();
 	m_startTicksRight = Robot::drive->GetRightEnc();
@@ -98,7 +98,10 @@ void AutoDriveForward::Execute() {
 //	}
 	if (Robot::drive->GetHighGear())
 	{
-		Robot::drive->TankDrive(m_lSpeed * ENC_HIGH_SPEED_MAX, m_rSpeed * ENC_HIGH_SPEED_MAX);
+		if (fabs(lTickDiff) > 4000)
+			Robot::drive->TankDrive(m_lSpeed * ENC_HIGH_SPEED_MAX, m_rSpeed * ENC_HIGH_SPEED_MAX);
+		else
+			Robot::drive->TankDrive(m_lSpeed * ENC_HIGH_SPEED_MAX * fabs(lTickDiff) / 4000, m_rSpeed * ENC_HIGH_SPEED_MAX * fabs(lTickDiff) / 4000);
 	}
 	else
 	{
