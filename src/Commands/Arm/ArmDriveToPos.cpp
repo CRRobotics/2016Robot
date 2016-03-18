@@ -31,7 +31,7 @@ void ArmDriveToPos::Initialize() {
 	else {
 		Robot::arm->ArmAssist(false);
 	}
-	SmartDashboard::PutBoolean("arm done", false);
+	SmartDashboard::PutBoolean("arm_done", false);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -47,7 +47,7 @@ bool ArmDriveToPos::IsFinished() {
 
 // Called once after isFinished returns true
 void ArmDriveToPos::End() {
-	SmartDashboard::PutBoolean("arm done", true);
+	SmartDashboard::PutBoolean("arm_done", true);
 }
 
 // Called when another command which requires one or more of the same

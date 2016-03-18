@@ -40,10 +40,10 @@ void LEDs::Refresh() {
 	offset++;
 	offset %= 88;
 	struct color *c = colors->data();
-	//for(unsigned i = 0; i < size; i += 128){
-	//	spi->Write(c + i, (unsigned char)std::min((unsigned)(size - i), (unsigned)128));
-	//}
-	//fwrite("\x00\x00\x00\x00", 4, 1, spif);
+//	for(unsigned i = 0; i < size; i += 128){
+//		spi->Write(c + i, (unsigned char)std::min((unsigned)(size - i), (unsigned)128));
+//	}
+	fwrite("\x00\x00\x00\x00", 4, 1, spif);
 	int a = 0, b = 0;
 	if(number != offset) a = fwrite(c + offset, sizeof(struct color), number-offset, spif);
 	if(offset != 0) b = fwrite(c, sizeof(struct color), offset, spif);

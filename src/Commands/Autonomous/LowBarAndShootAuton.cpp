@@ -1,11 +1,11 @@
-#include "LowBarAuton.h"
+#include "LowBarAndShootAuton.h"
 #include "../Drive/ShiftLow.h"
 #include "../Drive/AutoDriveForward.h"
 #include "../Arm/ArmDriveToPos.h"
 #include "../Drive/AutoDriveTurn.h"
 #include "../Acquisition/AutoEjectBall.h"
 
-LowBarAuton::LowBarAuton(){
+LowBarAndShootAuton::LowBarAndShootAuton(){
 	AddSequential(new ShiftLow());
 	AddSequential(new AutoDriveForward(.75,24));
 	AddSequential(new ArmDriveToPos(Arm::Position::POS_DOWN),3);

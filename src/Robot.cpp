@@ -108,6 +108,7 @@ void Robot::RobotInit() {
 	SmartDashboard::PutData("Joystick Feedback Drive", new JoystickFeedbackDrive());
 
 	SmartDashboard::PutNumber("stick_deadband", .02);
+	SmartDashboard::PutBoolean("arm_done", false);
 }
 
 /**
