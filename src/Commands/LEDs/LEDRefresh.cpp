@@ -28,6 +28,7 @@ void LEDRefresh::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void LEDRefresh::Execute() {
+	SmartDashboard::PutBoolean("LED RUNNING", true);
 	Robot::leds->Refresh();
 }
 
@@ -38,11 +39,11 @@ bool LEDRefresh::IsFinished() {
 
 // Called once after isFinished returns true
 void LEDRefresh::End() {
-
+	SmartDashboard::PutBoolean("LED RUNNING", false);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void LEDRefresh::Interrupted() {
-
+	SmartDashboard::PutBoolean("LED RUNNING", false);
 }

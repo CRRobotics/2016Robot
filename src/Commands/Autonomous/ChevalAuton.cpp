@@ -9,7 +9,8 @@ ChevalAuton::ChevalAuton(){
 	AddSequential(new AutoDriveForward(-1,24));
 
 	AddSequential(new AutoDriveForward(-.5,8),2);
-	AddParallel(new ArmDriveToPos(Arm::Position::POS_DOWN), 5);
+	AddParallel(new ArmDriveToPos(Arm::Position::POS_DOWN), 2);
 	AddSequential(new AutoDriveForward(1, 9));
+	AddParallel(new ArmDriveToPos(Arm::Position::POS_START));
 	AddSequential(new AutoDriveForward(-1, 120));
 }

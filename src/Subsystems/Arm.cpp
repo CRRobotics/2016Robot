@@ -72,7 +72,7 @@ double Arm::GetArmPos(){
 
 
 bool Arm::IsArmAtPoint(Position pos){
-	return fabs(armPot->Get() - GetPotValueForPos(pos)) < 5;
+	return fabs(GetArmPos() - GetPotValueForPos(pos)) < 8;
 }
 
 double Arm::GetPotValueForPos(Position pos){

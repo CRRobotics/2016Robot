@@ -22,6 +22,7 @@ LEDs::LEDs(unsigned number) : Subsystem("LEDs") {
 		(*colors)[i].g = 0;
 		(*colors)[i].b = 0;
 	}
+	SmartDashboard::PutBoolean("LED RUNNING", false);
 }
 
 void LEDs::InitDefaultCommand(){

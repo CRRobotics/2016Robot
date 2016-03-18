@@ -116,7 +116,7 @@ bool AutoDriveForward::IsFinished() {
 
 // Called once after isFinished returns true
 void AutoDriveForward::End() {
-
+	Robot::drive->TankDrive(0,0);
 }
 
 // Called when another command which requires one or more of the same
