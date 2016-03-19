@@ -89,10 +89,10 @@ double Scaling::GetEncValueForPos(Position pos){
 	switch (pos)//Update values
 	{
 		case Position::POS_EXTENDED:
-			return scale_button_offset - 2000;
+			return scale_button_offset - 10000;
 		break;
 		case Position::POS_RETRACTED:
-			return scale_button_offset + 2000;
+			return scale_button_offset + 7350;
 		break;
 		case Position::POS_HOME:
 			return 1;

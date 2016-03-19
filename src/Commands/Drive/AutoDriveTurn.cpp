@@ -11,9 +11,9 @@
 
 #include "AutoDriveTurn.h"
 
-double AutoDriveTurn::m_derivative_coeff = 0.1;
+double AutoDriveTurn::m_derivative_coeff = 0;
 double AutoDriveTurn::m_integral_coeff = 0;
-double AutoDriveTurn::m_prop_coeff = 0;
+double AutoDriveTurn::m_prop_coeff = .1;
 int counter = 0;
 
 AutoDriveTurn::AutoDriveTurn(double angle): Command() {
@@ -41,7 +41,9 @@ void AutoDriveTurn::Initialize() {
 //	}
 	counter = 0;
 	SmartDashboard::PutString("auto_stage", "turning");
-
+	//m_angle = SmartDashboard::GetNumber("auto_turn_test_angle", 0);
+	Robot::drive->TankDrive(0,0);
+	Robot::drive->ChangeControlMode(CANSpeedController::ControlMode::kPercentVbus);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -69,7 +71,7 @@ bool AutoDriveTurn::IsFinished() {
 
 // Called once after isFinished returns true
 void AutoDriveTurn::End() {
-
+	Robot::drive->TankDrive(0,0);
 }
 
 // Called when another command which requires one or more of the same

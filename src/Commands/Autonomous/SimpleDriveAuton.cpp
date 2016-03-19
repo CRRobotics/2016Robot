@@ -8,7 +8,7 @@
 
 SimpleDriveAuton::SimpleDriveAuton(){
 	AddParallel(new ArmDriveToPos(Arm::Position::POS_SALLY));
-	AddSequential(new ShiftHigh());
+	AddSequential(new ShiftLow());
 	AddSequential(new AutoDriveForward(1,24));
 	AddSequential(new AutoDriveForward(.75,120));
 }

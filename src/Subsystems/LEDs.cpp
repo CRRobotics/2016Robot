@@ -47,7 +47,7 @@ void LEDs::Refresh() {
 	int a = 0, b = 0;
 	if(number != offset) a = fwrite(c + offset, sizeof(struct color), number-offset, spif);
 	if(offset != 0) b = fwrite(c, sizeof(struct color), offset, spif);
-	fprintf(stderr, "%d %d  %d %d %d\n", number, offset, a, b, a+b);
+	//fprintf(stderr, "%d %d  %d %d %d\n", number, offset, a, b, a+b);
 
 	fwrite("\xff\xff\xff\xff", 4, 1, spif);
 	fflush(spif);

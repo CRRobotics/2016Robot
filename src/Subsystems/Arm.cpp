@@ -88,7 +88,7 @@ double Arm::GetPotValueForPos(Position pos){
 			return GetArmPos() - ARM_LOWER;
 		break;
 		case Position::POS_PORT:
-			return 200;
+			return 468;
 		break;
 		case Position::POS_SALLY:
 			return 200;

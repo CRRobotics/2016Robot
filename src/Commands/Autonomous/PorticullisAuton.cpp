@@ -6,5 +6,10 @@
 #include "../Acquisition/AutoEjectBall.h"
 
 PorticullisAuton::PorticullisAuton(){
-
+	AddSequential(new ShiftLow());
+	AddSequential(new AutoDriveForward(-.25, 42));
+	AddSequential(new ArmDriveToPos(Arm::Position::POS_DOWN), 1.8);
+	AddSequential(new AutoDriveForward(-.25, 10));
+	AddParallel(new ArmDriveToPos(Arm::Position::POS_PORT), 1.8);
+	AddSequential(new AutoDriveForward(-.75, 93));
 }

@@ -63,6 +63,7 @@ void Drive::ChangeControlMode(CANTalon::ControlMode mode){
 }
 
 void Drive::TankDrive(double lSpeed, double rSpeed) {
+	SmartDashboard::PutNumber("AUTO_FORWARD_SPEED", lSpeed);
 	lDrive1->Set(lSpeed);
 	rDrive1->Set(-rSpeed);
 }

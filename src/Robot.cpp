@@ -22,6 +22,7 @@
 #include "Commands/Autonomous/SimpleDriveAuton.h"
 #include "Commands/Drive/AutoDriveForward.h"
 #include "Commands/Autonomous/LowBarAndShootAuton.h"
+#include "Commands/Autonomous/PorticullisAuton.h"
 
 #define TARGET_X 262.2154
 #define TARGET_Y 550.6462
@@ -78,6 +79,7 @@ void Robot::RobotInit() {
 	autoDefenseChooser->AddObject("Ramparts", new RampartsAuton());
 	autoDefenseChooser->AddObject("Drive Forward", new SimpleDriveAuton());
 	autoDefenseChooser->AddObject("Reach defense", new AutoDriveForward(.5, 48));
+	autoDefenseChooser->AddObject("Porticullis", new PorticullisAuton());
 	autoDefenseChooser->AddObject("Nothing", new CommandGroup());
 //	autoDefenseChooser->AddDefault("Cheval de Frise", new CrossDefense(Defense::CHEVAL));
 //	autoDefenseChooser->AddObject("Drawbridge", new CrossDefense(Defense::DRAW));
@@ -111,6 +113,8 @@ void Robot::RobotInit() {
 
 //	SmartDashboard::PutNumber("stick_deadband", .02);
 	SmartDashboard::PutBoolean("arm_done", false);
+
+	SmartDashboard::PutData("arm_test_down", new ArmDriveToPos(Arm::Position::POS_DOWN));
 }
 
 /**
