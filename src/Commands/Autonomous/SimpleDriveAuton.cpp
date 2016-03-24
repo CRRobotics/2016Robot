@@ -11,4 +11,5 @@ SimpleDriveAuton::SimpleDriveAuton(){
 	AddSequential(new ShiftLow());
 	AddSequential(new AutoDriveForward(1,24));
 	AddSequential(new AutoDriveForward(.75,120));
+	AddSequential(new ShiftHigh());
 }

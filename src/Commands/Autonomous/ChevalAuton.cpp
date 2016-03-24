@@ -1,5 +1,6 @@
 #include "ChevalAuton.h"
 #include "../Drive/ShiftLow.h"
+#include "../Drive/ShiftHigh.h"
 #include "../Drive/AutoDriveForward.h"
 #include "../Arm/ArmDriveToPos.h"
 
@@ -11,4 +12,5 @@ ChevalAuton::ChevalAuton(){
 	AddSequential(new AutoDriveForward(.5, 2));
 	AddParallel(new ArmDriveToPos(Arm::Position::POS_START));
 	AddSequential(new AutoDriveForward(-1, 120));
+	AddSequential(new ShiftHigh());
 }

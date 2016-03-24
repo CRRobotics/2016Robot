@@ -40,9 +40,24 @@ void ArmDriveToPos::Execute() {
 	SmartDashboard::PutString("auto_stage", "Arm Drive");
 }
 
+int stillCount = 0;
+int lastPotValue = 0;
 // Make this return true when this Command no longer needs to run execute()
 bool ArmDriveToPos::IsFinished() {
-    return fabs(Robot::oi->GetYControl()) > 0 || Robot::arm->IsArmAtPoint(m_position);
+//	if (fabs((int)Robot::arm->GetArmPos() - lastPotValue) < 3)
+//	{
+//		stillCount++;
+//	}
+//	else
+//	{
+//		stillCount = 0;
+//		lastPotValue = Robot::arm->GetArmPos();
+//	}
+
+//	if (m_position == Arm::Position::BUMP)
+//		return fabs(Robot::oi->GetYControl()) > 0 || Robot::arm->IsArmAtPoint(m_position) || stillCount > 10;
+//	else
+		return fabs(Robot::oi->GetYControl()) > 0 || Robot::arm->IsArmAtPoint(m_position);
 }
 
 // Called once after isFinished returns true

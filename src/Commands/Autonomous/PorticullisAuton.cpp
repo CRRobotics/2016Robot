@@ -1,5 +1,6 @@
 #include "PorticullisAuton.h"
 #include "../Drive/ShiftLow.h"
+#include "../Drive/ShiftHigh.h"
 #include "../Drive/AutoDriveForward.h"
 #include "../Arm/ArmDriveToPos.h"
 #include "../Drive/AutoDriveTurn.h"
@@ -12,4 +13,5 @@ PorticullisAuton::PorticullisAuton(){
 	AddSequential(new AutoDriveForward(-.25, 10));
 	AddParallel(new ArmDriveToPos(Arm::Position::POS_PORT), 1.8);
 	AddSequential(new AutoDriveForward(-.75, 93));
+	AddSequential(new ShiftHigh());
 }
