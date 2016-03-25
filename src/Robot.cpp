@@ -23,6 +23,7 @@
 #include "Commands/Drive/AutoDriveForward.h"
 #include "Commands/Autonomous/LowBarAndShootAuton.h"
 #include "Commands/Autonomous/PorticullisAuton.h"
+#include "Commands/Acquisition/AutoEjectBall.h"
 
 #define TARGET_X 262.2154
 #define TARGET_Y 550.6462
@@ -115,6 +116,7 @@ void Robot::RobotInit() {
 	SmartDashboard::PutBoolean("arm_done", false);
 
 	SmartDashboard::PutData("arm_test_down", new ArmDriveToPos(Arm::Position::POS_DOWN));
+	SmartDashboard::PutData("auto_eject_ball", new AutoEjectBall());
 }
 
 /**
