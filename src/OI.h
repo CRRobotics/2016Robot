@@ -28,6 +28,13 @@ private:
 	//Drive
 	std::shared_ptr<JoystickButton> m_drvShiftHigh;
 	std::shared_ptr<JoystickButton> m_drvShiftLow;
+	std::shared_ptr<JoystickButton> m_drvForwardL;
+	std::shared_ptr<JoystickButton> m_drvForwardR;
+	std::shared_ptr<JoystickButton> m_drvTurnShootL;//Shoot on the left goal, not turn left
+	std::shared_ptr<JoystickButton> m_drvTurnShootR;
+
+	//AHRS
+	std::shared_ptr<JoystickButton> m_resetNavX;
 
 	//Arm
 	std::shared_ptr<JoystickButton> m_armSetStart;

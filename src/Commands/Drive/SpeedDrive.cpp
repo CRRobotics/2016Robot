@@ -8,6 +8,8 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
+#define ENC_LOW_SPEED_MAX 1250 * 2
+#define ENC_HIGH_SPEED_MAX 4000 * 2
 
 #include "SpeedDrive.h"
 
@@ -23,10 +25,17 @@ SpeedDrive::SpeedDrive(double speed): Command() {
 
 // Called just before this Command runs the first time
 void SpeedDrive::Initialize() {
-	m_speed = SmartDashboard::GetNumber("drive_test_speed", 0);
+	//m_speed = SmartDashboard::GetNumber("drive_test_speed", 0);
 	Robot::drive->ChangeControlMode(CANTalon::ControlMode::kSpeed);
-	Robot::drive->SetDrivePID(SmartDashboard::GetNumber("drive_p", 1), SmartDashboard::GetNumber("drive_i", 0), SmartDashboard::GetNumber("drive_d", 0), SmartDashboard::GetNumber("drive_f", 0));
-	Robot::drive->TankDrive(m_speed, m_speed);
+	if (Robot::drive->GetHighGear())
+		Robot::drive->SetDrivePID(.2, 0, 0, .05);
+	else
+		Robot::drive->SetDrivePID(.9, 0, 0, 0.1);
+
+	if (Robot::drive->GetHighGear())
+		Robot::drive->TankDrive(m_speed * ENC_HIGH_SPEED_MAX, m_speed * ENC_HIGH_SPEED_MAX);
+	else
+		Robot::drive->TankDrive(m_speed * ENC_LOW_SPEED_MAX, m_speed * ENC_LOW_SPEED_MAX);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -34,6 +43,10 @@ void SpeedDrive::Execute() {
 
 //	Robot::drive->TankDrive(Robot::oi->GetYLeft(), Robot::oi->GetYRight());
 	//changed to linear for closed loop speed control
+	if (Robot::drive->GetHighGear())
+		Robot::drive->TankDrive(m_speed * ENC_HIGH_SPEED_MAX, m_speed * ENC_HIGH_SPEED_MAX);
+	else
+		Robot::drive->TankDrive(m_speed * ENC_LOW_SPEED_MAX, m_speed * ENC_LOW_SPEED_MAX);
 	SmartDashboard::PutNumber("lDriveEnc ", Robot::drive->GetLeftEnc());
 	SmartDashboard::PutNumber("rDriveEnc ", Robot::drive->GetRightEnc());
 	SmartDashboard::PutNumber("lDriveEnc_speed", Robot::drive->GetLEncSpeed());
@@ -42,7 +55,7 @@ void SpeedDrive::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool SpeedDrive::IsFinished() {
-    return false;
+    return fabs(Robot::oi->GetYLeft()) > 0 || fabs(Robot::oi->GetYRight()) > 0;
 }
 
 // Called once after isFinished returns true

@@ -10,10 +10,10 @@
 
 PorticullisAndShootAuton::PorticullisAndShootAuton(){
 	AddSequential(new PorticullisAuton());
-	AddSequential(new AutoDriveForward(.5, 98));
+	AddSequential(new AutoDriveForward(-.5, 98));
 
 	AddSequential(new ShiftLow());
-	AddSequential(new AutoDriveTurn(60));
+	AddSequential(new AutoDriveTurn(120));
 
 	AddSequential(new ShiftHigh());
 	AddSequential(new AutoDriveForward(.6, 75), 3);

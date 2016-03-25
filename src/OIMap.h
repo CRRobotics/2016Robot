@@ -40,5 +40,11 @@
 //Drive
 #define DRV_SHIFT_HIGH 11
 #define DRV_SHIFT_LOW 6
+#define DRV_FORWARD 1
+#define DRV_TURN_SHOOTL 7
+#define DRV_TURN_SHOOTR 7
+
+//AHRS
+#define AHRS_RESET 20
 
 #endif

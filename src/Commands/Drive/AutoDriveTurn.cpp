@@ -62,11 +62,15 @@ void AutoDriveTurn::Execute() {
 bool AutoDriveTurn::IsFinished() {
 	//return (fabs(Robot::drive->GetLeftEnc() - m_startTicksLeft) > fabs(m_ticks) && fabs(Robot::drive->GetRightEnc() - m_startTicksRight) > fabs(m_ticks));
 	SmartDashboard::PutNumber("angle_diff", angle_diff(Robot::drive->GetYaw(), m_angle));
+	if (fabs(Robot::oi->GetYLeft()) > 0.05 || fabs(Robot::oi->GetYRight()) > 0.05)
+		return true;
+
 	if (fabs(angle_diff(Robot::drive->GetYaw(),m_angle)) < 2)
 		counter++;
 	else
 		counter = 0;
 	return counter > 10;
+
 }
 
 // Called once after isFinished returns true
