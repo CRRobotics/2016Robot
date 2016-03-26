@@ -12,6 +12,6 @@ PorticullisAuton::PorticullisAuton(){
 	AddSequential(new ArmDriveToPos(Arm::Position::POS_DOWN), 1.8);
 	AddSequential(new AutoDriveForward(-.25, 10));
 	AddParallel(new ArmDriveToPos(Arm::Position::POS_PORT), 1.8);
-	AddSequential(new AutoDriveForward(-.75, 93));
+	AddSequential(new AutoDriveForward(-.75, 98));
 	AddSequential(new ShiftHigh());
 }
