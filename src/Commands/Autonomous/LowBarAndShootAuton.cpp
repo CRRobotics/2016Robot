@@ -14,7 +14,7 @@ LowBarAndShootAuton::LowBarAndShootAuton(){
 
 	AddSequential(new ShiftHigh());
 	AddSequential(new ArmDriveToPos(Arm::Position::POS_DOWN), 2);
-	AddSequential(new AutoDriveForward(.75, 108 - 9 + 16 - 2 - 6 - 7));
+	AddSequential(new AutoDriveForward(.75, 108 - 9 + 16 - 2 - 6 - 7 + 4));
 
 	AddSequential(new ShiftLow());
 	AddSequential(new ArmDriveToPos(Arm::Position::POS_START), 2);
@@ -24,14 +24,16 @@ LowBarAndShootAuton::LowBarAndShootAuton(){
 
 	AddSequential(new ShiftHigh());
 	AddSequential(new AutoDriveForward(.75, 60.219 - 2 - 6));
-	AddSequential(new ResetDisplacement());
+	//AddSequential(new ResetDisplacement());
 
 	AddSequential(new ShiftLow());
-	AddSequential(new AutoDriveTurn(50 - 2));
+	AddSequential(new AutoDriveTurn(60));
 	//AddSequential(new ShiftLow());
 
 	AddSequential(new ShiftHigh());
-	AddSequential(new AutoDriveForward(.5, 135.0203), 3);
-	AddSequential(new AutoEjectBall(), 5);
+	AddSequential(new AutoDriveForward(.5, 135.0203), 2.5);
+	AddSequential(new ShiftLow());
+	AddSequential(new AutoDriveTurn(60), 1);
+	AddSequential(new AutoEjectBall(), 3);
 	AddSequential(new ShiftHigh());
 }

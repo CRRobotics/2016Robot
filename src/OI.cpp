@@ -49,8 +49,8 @@ OI::OI() {
     m_drvShiftLow.reset(new JoystickButton(m_lStick.get(), DRV_SHIFT_LOW));
     m_drvForwardL.reset(new JoystickButton(m_lStick.get(), DRV_FORWARD));//TODO: Change joystick?
     m_drvForwardR.reset(new JoystickButton(m_rStick.get(), DRV_FORWARD));
-    m_drvTurnShootL.reset(new JoystickButton(m_rStick.get(), DRV_TURN_SHOOTL));//TODO: Change joystick?
-    m_drvTurnShootR.reset(new JoystickButton(m_lStick.get(), DRV_TURN_SHOOTR));//TODO: Change joystick?
+    m_drvTurnShootL.reset(new JoystickButton(m_lStick.get(), DRV_TURN_SHOOTL));//TODO: Change joystick?
+    m_drvTurnShootR.reset(new JoystickButton(m_rStick.get(), DRV_TURN_SHOOTR));//TODO: Change joystick?
 
     m_armSetScale.reset(new JoystickButton(m_cStick.get(), ARM_SCALE_POS));
     m_armSetDraw.reset(new JoystickButton(m_cStick.get(),  ARM_DRAW_POS));
