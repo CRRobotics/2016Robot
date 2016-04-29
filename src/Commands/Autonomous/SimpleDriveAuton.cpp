@@ -8,10 +8,10 @@
 #include "../AHRS/ResetDisplacement.h"
 
 SimpleDriveAuton::SimpleDriveAuton(){
+	AddSequential(new ResetDisplacement());
 	AddParallel(new ArmDriveToPos(Arm::Position::POS_SALLY));
 	AddSequential(new ShiftLow());
 	AddSequential(new AutoDriveForward(1, 24));
-	AddSequential(new ResetDisplacement());
 	AddSequential(new AutoDriveForward(.75, 108));
 	AddSequential(new AutoDriveTurn(0));
 	AddSequential(new AutoDriveForward(1, 18));

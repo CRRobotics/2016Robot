@@ -26,7 +26,7 @@ void JoystickScale::Initialize() {
 void JoystickScale::Execute() {
 //	if (!(Robot::oi->GetYControl() < 0 && Robot::scaling->GetScaleEnc() < SCALE_MAX_ENC)
 //		&& !(Robot::oi->GetYControl() > 0 && Robot::scaling->GetScaleEnc() > SCALE_MIN_ENC))
-		Robot::scaling->SetExtendSpeed(Robot::oi->GetYControl());
+	Robot::scaling->SetExtendSpeed(Robot::oi->GetYControl());
 	SmartDashboard::PutNumber("Scale Current", Robot::scaling->GetCurrent());
 	SmartDashboard::PutNumber("Scale Enc", Robot::scaling->GetScaleEnc());
 }
