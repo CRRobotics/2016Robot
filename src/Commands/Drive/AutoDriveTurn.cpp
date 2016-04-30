@@ -54,7 +54,7 @@ void AutoDriveTurn::Initialize() {
 	{
 		m_derivative_coeff = 0;
 		m_integral_coeff = 0;
-		m_prop_coeff = .1;
+		m_prop_coeff = .095;
 	}
 }
 

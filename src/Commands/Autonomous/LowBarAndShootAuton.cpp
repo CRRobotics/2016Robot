@@ -19,7 +19,7 @@ LowBarAndShootAuton::LowBarAndShootAuton(){
 	AddSequential(new ShiftLow());
 	AddSequential(new ArmDriveToPos(Arm::Position::POS_START), 2);
 	//AddSequential(new AutoDriveForward(1, 36 + .6631));
-	AddSequential(new ResetDisplacement());
+	//AddSequential(new ResetDisplacement());
 	AddSequential(new AutoDriveTurn(10));
 
 	AddSequential(new ShiftHigh());
