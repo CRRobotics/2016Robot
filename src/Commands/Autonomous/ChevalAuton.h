@@ -9,6 +9,9 @@ class ChevalAuton: public CommandGroup
 	public:
 	ChevalAuton();
 
+	virtual void End();
+	virtual void Interrupted();
+
 	private:
 
 };

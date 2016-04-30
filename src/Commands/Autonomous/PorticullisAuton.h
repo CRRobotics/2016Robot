@@ -12,6 +12,8 @@ class PorticullisAuton: public CommandGroup
 {
 	public:
 	PorticullisAuton();
+	virtual void End();
+	virtual void Interrupted();
 
 	private:
 

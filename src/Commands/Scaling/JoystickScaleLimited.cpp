@@ -10,8 +10,8 @@
 
 
 #include "JoystickScaleLimited.h"
-#define SCALE_MAX_ENC -10000 + 200
-#define SCALE_SLOW_START -7500
+#define SCALE_MAX_ENC -10000
+#define SCALE_SLOW_START -9000
 #define SCALE_MIN_ENC 0
 
 JoystickScaleLimited::JoystickScaleLimited(): Command() {
@@ -22,18 +22,18 @@ JoystickScaleLimited::JoystickScaleLimited(): Command() {
 
 
 void JoystickScaleLimited::Initialize() {
-	m_startEnc = Robot::scaling->GetScaleEnc();
+	//m_startEnc = Robot::scaling->GetScaleEnc();
 }
 
 void JoystickScaleLimited::Execute() {
-	if (Robot::scaling->GetScaleEnc() > m_startEnc + SCALE_SLOW_START)//If its not in the slow zone
+	if (Robot::scaling->GetScaleEnc() > SCALE_SLOW_START)//If its not in the slow zone
 		Robot::scaling->SetExtendSpeed(Robot::oi->GetYControl());
 	else//Robot is in the slow zone
 	{
-		if (Robot::oi->GetYControl() > 0)
+		if (Robot::oi->GetYControl() < 0)
 		{
-			double slow = fabs((Robot::scaling->GetScaleEnc() - m_startEnc - SCALE_SLOW_START)/((double)(SCALE_MAX_ENC - SCALE_SLOW_START)));
-			if (Robot::scaling->GetScaleEnc() - m_startEnc < SCALE_MAX_ENC)
+			double slow = fabs((Robot::scaling->GetScaleEnc() - (SCALE_MAX_ENC - 400))/((double)(SCALE_MAX_ENC - SCALE_SLOW_START)));
+			if (Robot::scaling->GetScaleEnc() < SCALE_MAX_ENC)
 				slow = 0;
 			Robot::scaling->SetExtendSpeed(Robot::oi->GetYControl() * slow);
 		}

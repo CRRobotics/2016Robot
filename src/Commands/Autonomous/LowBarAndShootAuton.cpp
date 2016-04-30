@@ -8,13 +8,13 @@
 #include "../AHRS/ResetDisplacement.h"
 
 LowBarAndShootAuton::LowBarAndShootAuton(){
-	AddSequential(new ResetDisplacement());
+	//AddSequential(new ResetDisplacement());
 	AddSequential(new ShiftLow());
 	AddSequential(new AutoDriveForward(1,24));
 
 	AddSequential(new ShiftHigh());
 	AddSequential(new ArmDriveToPos(Arm::Position::POS_DOWN), 2);
-	AddSequential(new AutoDriveForward(.75, 108 - 9 + 16 - 2 - 6 - 7 + 4));
+	AddSequential(new AutoDriveForward(.75, 108 - 9 + 16 - 2 - 6 - 7 + 4 + 15));
 
 	AddSequential(new ShiftLow());
 	AddSequential(new ArmDriveToPos(Arm::Position::POS_START), 2);
@@ -27,7 +27,7 @@ LowBarAndShootAuton::LowBarAndShootAuton(){
 	//AddSequential(new ResetDisplacement());
 
 	AddSequential(new ShiftLow());
-	AddSequential(new AutoDriveTurn(60));
+	AddSequential(new AutoDriveTurn(60 - 2));
 	//AddSequential(new ShiftLow());
 
 	AddSequential(new ShiftHigh());

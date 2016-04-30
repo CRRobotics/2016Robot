@@ -44,6 +44,18 @@ void AutoDriveTurn::Initialize() {
 	//m_angle = SmartDashboard::GetNumber("auto_turn_test_angle", 0);
 	Robot::drive->TankDrive(0,0);
 	Robot::drive->ChangeControlMode(CANSpeedController::ControlMode::kPercentVbus);
+	if (Robot::drive->GetHighGear())
+	{
+		m_derivative_coeff = SmartDashboard::GetNumber("turn_d_coeff", 0);
+		m_integral_coeff = SmartDashboard::GetNumber("turn_i_coeff", 0);
+		m_prop_coeff = SmartDashboard::GetNumber("turn_p_coeff", 0.1);
+	}
+	else
+	{
+		m_derivative_coeff = 0;
+		m_integral_coeff = 0;
+		m_prop_coeff = .1;
+	}
 }
 
 // Called repeatedly when this Command is scheduled to run
