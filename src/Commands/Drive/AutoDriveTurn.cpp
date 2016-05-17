@@ -68,6 +68,9 @@ void AutoDriveTurn::Execute() {
 	double i_now = m_integral_coeff * (m_integral += ca_diff);
 	double speed = p_now + i_now + d_now;
 	Robot::drive->TankDrive(speed, -speed);//TODO: Maybe flip which one is negative
+	if (!Robot::drive->ahrs->IsCalibrating())
+		SmartDashboard::PutNumber("navx_yaw", Robot::drive->GetYaw());
+
 }
 
 // Make this return true when this Command no longer needs to run execute()

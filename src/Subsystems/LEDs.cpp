@@ -38,7 +38,7 @@ LEDs::~LEDs() {
 void LEDs::Refresh() {
 	//fprintf(stderr, "refresh\n");
 	offset++;
-	offset %= 88;
+	offset %= number;
 	struct color *c = colors->data();
 //	for(unsigned i = 0; i < size; i += 128){
 //		spi->Write(c + i, (unsigned char)std::min((unsigned)(size - i), (unsigned)128));
@@ -55,7 +55,7 @@ void LEDs::Refresh() {
 
 void LEDs::Resize(unsigned n){
 	colors->resize(n);
-	for(unsigned i = number; i < n; i++){
+	for(unsigned i = n; i < number; i++){
 		(*colors)[i].__brightness = 0xff;
 	}
 	number = n;

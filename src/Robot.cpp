@@ -58,10 +58,11 @@ void Robot::RobotInit() {
     leds.reset(new LEDs(88));
     //LEDStrip *s = new LEDStrip(0, 10);
     for(int i = 0; i < 89; i++){
-    	int q = i % 7 * 3;
-    	(*leds->colors)[i].r = x[q];
-    	(*leds->colors)[i].g = x[q+1];
-    	(*leds->colors)[i].b = x[q+2];
+    	int q = (i % 7) * 3;
+    	bool color = ((i % 8) != 0);
+    	(*leds->colors)[i].r = 0xff;//x[q];//
+    	(*leds->colors)[i].g = color ? 0x00 : 0xff;//x[q+1];//
+    	(*leds->colors)[i].b = color ? 0x00 : 0xff;//x[q+2];//
     	//(*s)[i].g = i * 2;
     }
     leds->Refresh();

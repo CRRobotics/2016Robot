@@ -14,7 +14,7 @@
 #include "WPILib.h"
 #include "AHRS/AHRS.h"
 
-#define ARM_ASSIST_POINT 100
+#define ARM_ASSIST_POINT 80
 
 #define ARM_LIFT_P 1
 #define ARM_LIFT_I 0
