@@ -151,6 +151,16 @@ double OI::GetYLeft(){
 		return value;
 	}
 }
+double OI::GetXLeft()
+{
+	double value = m_lStick->GetX();
+	if(fabs(value) < .02){//SmartDashboard::GetNumber("stick_deadband", .02)) {
+		return 0;
+	}
+	else {
+		return value;
+	}
+}
 
 double OI::GetYRight(){
 	double value = m_rStick->GetY();

@@ -35,8 +35,8 @@ std::shared_ptr<Acquisition> Robot::acquisition;
 std::shared_ptr<Arm> Robot::arm;
 std::shared_ptr<Scaling> Robot::scaling;
 std::unique_ptr<OI> Robot::oi;
-SendableChooser* Robot::autoPositionChooser;
-SendableChooser* Robot::autoDefenseChooser;
+frc::SendableChooser<Command>* Robot::autoPositionChooser;
+frc::SendableChooser<Command>* Robot::autoDefenseChooser;
 std::shared_ptr<LEDs> Robot::leds;
 
 uint8_t x[21] = {255, 0, 0,
@@ -74,15 +74,15 @@ void Robot::RobotInit() {
 	// news. Don't move it.
 	oi.reset(new OI());
 
-	autoDefenseChooser = new SendableChooser();
-	autoDefenseChooser->AddDefault("Low bar", new LowBarAuton());
-	autoDefenseChooser->AddObject("Low bar and shoot", new LowBarAndShootAuton());
-	autoDefenseChooser->AddObject("Cheval de Frise", new ChevalAuton());
-	autoDefenseChooser->AddObject("Ramparts", new RampartsAuton());
-	autoDefenseChooser->AddObject("Drive Forward", new SimpleDriveAuton());
-	autoDefenseChooser->AddObject("Reach defense", new AutoDriveForward(.5, 48));
-	autoDefenseChooser->AddObject("Porticullis", new PorticullisAuton());
-	autoDefenseChooser->AddObject("Nothing", new CommandGroup());
+	autoDefenseChooser = new frc::SendableChooser<Command>();
+	autoDefenseChooser->AddDefault("Low bar", *(new LowBarAuton()));
+	autoDefenseChooser->AddObject("Low bar and shoot", *(new LowBarAndShootAuton()));
+	autoDefenseChooser->AddObject("Cheval de Frise", *(new ChevalAuton()));
+	autoDefenseChooser->AddObject("Ramparts", *new RampartsAuton());
+	autoDefenseChooser->AddObject("Drive Forward", *new SimpleDriveAuton());
+	autoDefenseChooser->AddObject("Reach defense", *new AutoDriveForward(.5, 48));
+	autoDefenseChooser->AddObject("Porticullis", *new PorticullisAuton());
+	autoDefenseChooser->AddObject("Nothing", *new CommandGroup());
 //	autoDefenseChooser->AddDefault("Cheval de Frise", new CrossDefense(Defense::CHEVAL));
 //	autoDefenseChooser->AddObject("Drawbridge", new CrossDefense(Defense::DRAW));
 //	autoDefenseChooser->AddObject("Low Bar", new CrossDefense(Defense::LOW));
@@ -133,9 +133,10 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-	autonomousCommand.reset((Command *)autoDefenseChooser->GetSelected());
-	if (autonomousCommand.get() != nullptr)
-		autonomousCommand->Start();
+	//auto xx = autoDefenseChooser->GetSelected();
+	//autonomousCommand.reset(xx);
+	//if (autonomousCommand.get() != nullptr)
+	//	autonomousCommand->Start();
 }
 
 void Robot::AutonomousPeriodic() {

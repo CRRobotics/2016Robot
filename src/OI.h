@@ -66,6 +66,7 @@ public:
 	std::shared_ptr<JoystickButton> m_drvTurnShootR;
 
 	double GetYLeft();
+	double GetXLeft();
 	double GetYRight();
 	double GetYControl();
 	bool GetArmMan();
