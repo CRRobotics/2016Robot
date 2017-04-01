@@ -106,7 +106,7 @@ void Robot::RobotInit() {
 	SmartDashboard::PutNumber("arm_test_position", 400);
 	SmartDashboard::PutData("Arm To Test Pos", new ArmDriveToPos(Arm::Position::TEST));
 
-	SmartDashboard::PutNumber("drive_p", 0);
+	SmartDashboard::PutNumber("drive_p", 0.5);
 	SmartDashboard::PutNumber("drive_i", 0);
 	SmartDashboard::PutNumber("drive_d", 0);
 	SmartDashboard::PutNumber("drive_f", 0);
