@@ -55,7 +55,7 @@ bool Drive::GetHighGear(){
 void Drive::ChangeControlMode(CANTalon::ControlMode mode){
 	rDrive1->SetControlMode(mode);
 	lDrive1->SetControlMode(mode);
-	if (mode == CANTalon::ControlMode::kSpeed)
+	if (mode == CANTalon::ControlMode::kSpeed || mode == CANTalon::ControlMode::kMotionProfile)
 	{
 		 rDrive1->SetPIDSourceType(PIDSourceType::kRate);
 		 lDrive1->SetPIDSourceType(PIDSourceType::kRate);
@@ -114,3 +114,36 @@ double Drive::GetLEncSpeed(){
 double Drive::GetREncSpeed(){
 	return rDrive1->GetEncVel();
 }
+
+void Drive::FillTalons(double arr[][3], int len){
+	for (int i = 0; i < len; i++)
+	{
+		std::shared_ptr<CANTalon::TrajectoryPoint> pointL;
+		pointL.reset(new CANTalon::TrajectoryPoint());
+		std::shared_ptr<CANTalon::TrajectoryPoint> pointR;
+		pointR.reset(new CANTalon::TrajectoryPoint());
+		//CANTalon::TrajectoryPoint& pointL = &(new CANTalon::TrajectoryPoint());
+		//CANTalon::TrajectoryPoint& pointR = new CANTalon::TrajectoryPoint();
+		double scale = 4;
+		pointL->velocity = arr[i][0] * 483 / scale;
+		pointR->velocity = arr[i][1] * -483 / scale;
+		pointL->timeDurMs = arr[i][2] * 1000 * scale;
+		pointR->timeDurMs = arr[i][2] * 1000 * scale;
+		pointL->velocityOnly = true;
+		pointR->velocityOnly = true;
+		rDrive1->PushMotionProfileTrajectory(*(pointR.get()));
+		lDrive1->PushMotionProfileTrajectory(*(pointL.get()));
+	}
+}
+
+void Drive::RunMotionProfile(){
+	rDrive1->ProcessMotionProfileBuffer();
+	lDrive1->ProcessMotionProfileBuffer();
+}
+
+void Drive::StartMotionProfile(){
+	rDrive1->Set(CANTalon::SetValueMotionProfileEnable);
+	lDrive1->Set(CANTalon::SetValueMotionProfileEnable);
+
+}
+

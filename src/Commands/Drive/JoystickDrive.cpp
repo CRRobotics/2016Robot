@@ -25,19 +25,26 @@ JoystickDrive::JoystickDrive(): Command() {
 
 // Called just before this Command runs the first time
 void JoystickDrive::Initialize() {
-	Robot::drive->ChangeControlMode(CANTalon::ControlMode::kPercentVbus);
+	Robot::drive->ChangeControlMode(CANTalon::ControlMode::kSpeed);
+	double pCons = SmartDashboard::GetNumber("drive_p", 0);
+	double iCons = SmartDashboard::GetNumber("drive_i", 0);
+	double dCons = SmartDashboard::GetNumber("drive_d", 0);
+	double fCons = SmartDashboard::GetNumber("drive_f", 0);
+	Robot::drive->SetDrivePID(pCons, iCons, dCons, fCons);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void JoystickDrive::Execute() {
 //	Robot::drive->TankDrive(Robot::oi->GetYLeft() * fabs(Robot::oi->GetYLeft()),
 //							Robot::oi->GetYRight() * fabs(Robot::oi->GetYRight ()));
-	Robot::drive->TankDrive(Robot::oi->GetYLeft(), Robot::oi->GetYRight());
+	Robot::drive->TankDrive(Robot::oi->GetYLeft() * 3500, Robot::oi->GetYRight() * 3500);
 	//changed to linear for closed loop speed control
 	SmartDashboard::PutNumber("lDriveEnc ", Robot::drive->GetLeftEnc());
 	SmartDashboard::PutNumber("rDriveEnc ", Robot::drive->GetRightEnc());
 	SmartDashboard::PutNumber("lDriveEnc_speed", Robot::drive->GetLEncSpeed());
 	SmartDashboard::PutNumber("rDriveEnc_speed", Robot::drive->GetREncSpeed());
+	SmartDashboard::PutNumber("rEncError", Robot::drive->rDrive1->GetSetpoint() - Robot::drive->rDrive1->GetEncVel());
+	SmartDashboard::PutNumber("rTalonOutput", Robot::drive->rDrive1->GetOutputVoltage());
 }
 
 // Make this return true when this Command no longer needs to run execute()

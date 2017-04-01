@@ -13,7 +13,7 @@
 #define ROBOTMAP_H
 #include "WPILib.h"
 #include "Encoder.h"
-#include "AHRS/AHRS.cpp"
+#include "AHRS.h"
 #include "CANTalon.h"
 
 #define ARM_ASSIST_POINT 80

@@ -24,6 +24,7 @@
 #include "Commands/Autonomous/LowBarAndShootAuton.h"
 #include "Commands/Autonomous/PorticullisAuton.h"
 #include "Commands/Acquisition/AutoEjectBall.h"
+#include "Commands/Drive/MotionProfileDrive.h"
 
 #define TARGET_X 262.2154
 #define TARGET_Y 550.6462
@@ -35,8 +36,8 @@ std::shared_ptr<Acquisition> Robot::acquisition;
 std::shared_ptr<Arm> Robot::arm;
 std::shared_ptr<Scaling> Robot::scaling;
 std::unique_ptr<OI> Robot::oi;
-frc::SendableChooser<Command>* Robot::autoPositionChooser;
-frc::SendableChooser<Command>* Robot::autoDefenseChooser;
+//frc::SendableChooser<Command>* Robot::autoPositionChooser;
+//frc::SendableChooser<Command>* Robot::autoDefenseChooser;
 std::shared_ptr<LEDs> Robot::leds;
 
 uint8_t x[21] = {255, 0, 0,
@@ -74,7 +75,7 @@ void Robot::RobotInit() {
 	// news. Don't move it.
 	oi.reset(new OI());
 
-	autoDefenseChooser = new frc::SendableChooser<Command>();
+/*	autoDefenseChooser = new frc::SendableChooser<Command>();
 	autoDefenseChooser->AddDefault("Low bar", *(new LowBarAuton()));
 	autoDefenseChooser->AddObject("Low bar and shoot", *(new LowBarAndShootAuton()));
 	autoDefenseChooser->AddObject("Cheval de Frise", *(new ChevalAuton()));
@@ -82,7 +83,7 @@ void Robot::RobotInit() {
 	autoDefenseChooser->AddObject("Drive Forward", *new SimpleDriveAuton());
 	autoDefenseChooser->AddObject("Reach defense", *new AutoDriveForward(.5, 48));
 	autoDefenseChooser->AddObject("Porticullis", *new PorticullisAuton());
-	autoDefenseChooser->AddObject("Nothing", *new CommandGroup());
+	autoDefenseChooser->AddObject("Nothing", *new CommandGroup());*/
 //	autoDefenseChooser->AddDefault("Cheval de Frise", new CrossDefense(Defense::CHEVAL));
 //	autoDefenseChooser->AddObject("Drawbridge", new CrossDefense(Defense::DRAW));
 //	autoDefenseChooser->AddObject("Low Bar", new CrossDefense(Defense::LOW));
@@ -100,18 +101,19 @@ void Robot::RobotInit() {
 //	autoPositionChooser->AddObject("4", new DriveToTargetAndShoot(4, TARGET_X, TARGET_Y));
 //	autoPositionChooser->AddObject("5", new DriveToTargetAndShoot(5, TARGET_X, TARGET_Y));
 
-	SmartDashboard::PutData("autonomous defense chooser", autoDefenseChooser);
+//	SmartDashboard::PutData("autonomous defense chooser", autoDefenseChooser);
 //	SmartDashboard::PutData("autonomous position chooser", autoPositionChooser);
 	SmartDashboard::PutNumber("arm_test_position", 400);
 	SmartDashboard::PutData("Arm To Test Pos", new ArmDriveToPos(Arm::Position::TEST));
 
-	SmartDashboard::PutNumber("drive_p", 1);
+	SmartDashboard::PutNumber("drive_p", 0);
 	SmartDashboard::PutNumber("drive_i", 0);
 	SmartDashboard::PutNumber("drive_d", 0);
 	SmartDashboard::PutNumber("drive_f", 0);
 	SmartDashboard::PutNumber("drive_test_speed", 1);
 	SmartDashboard::PutData("Drive at Speed", new SpeedDrive(SmartDashboard::GetNumber("drive_test_speed", 0)));
 	SmartDashboard::PutData("Joystick Feedback Drive", new JoystickFeedbackDrive());
+	SmartDashboard::PutData("Motion Profile Drive", new MotionProfileDrive());
 
 //	SmartDashboard::PutNumber("stick_deadband", .02);
 	SmartDashboard::PutBoolean("arm_done", false);

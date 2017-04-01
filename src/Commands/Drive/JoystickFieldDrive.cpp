@@ -66,6 +66,14 @@ void JoystickFieldDrive::Execute() {
 	}
 }
 
+int JoystickFieldDrive::mod(int a, int n){
+	return a - floor(a/n) * n;
+}
+
+double JoystickFieldDrive::angle_diff(int a, int b){
+	return mod((a-b) + 180, 360) - 180;
+}
+
 // Make this return true when this Command no longer needs to run execute()
 bool JoystickFieldDrive::IsFinished() {
     return false;
